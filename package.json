@@ -1,0 +1,23 @@
+{
+  "name": "qlib",
+  "version": "1.0.0",
+  "description": "QBT Front-end Resource",
+  "main": "dist/qlib.css",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QiaoBuTang/qlib.git"
+  },
+  "keywords": [
+    "QBT",
+    "Front-End",
+    "bower"
+  ],
+  "author": "GilbertSun <szb4321@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QiaoBuTang/qlib/issues"
+  }
+}
