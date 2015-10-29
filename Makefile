@@ -3,6 +3,5 @@ test:
 
 dist:
 	@echo "aaa"
-.PHONY:
-	dist
 
+.PHONY: dist
