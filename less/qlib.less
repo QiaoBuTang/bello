@@ -1,47 +1,6 @@
 @import "_variable.less";
 @import "_mixin.less";
 
-// start: reset
-* {
-  padding: 0;
-  margin: 0;
-}
-html, body {
-  height: 100%;
-  color: @txt-color1;
-  font-size: 14px;
-  font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Tahoma, Arial, sans-serif;
-  line-height: 1.4;
-}
-input,textarea,button,pre{
-  font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Tahoma, Arial, sans-serif;
-}
-
-input, label {
-  vertical-align: middle;
-}
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px white inset;
-}
-img {
-  border: 0;
-}
-pre, textarea {
-  white-space: pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -o-pre-wrap;
-  word-wrap: break-word;
-}
-input {
-  &[type=text] {
-    .border-radius(0);
-  }
-  &[type=button],
-  &[type=submit],
-  &[type=search] {
-    -webkit-appearance: none;
-  }
-}
 h1 {
   &.page_title {
     font-size: 16px;
@@ -55,19 +14,6 @@ h1 {
         vertical-align: 4px;
       }
     }
-  }
-}
-h2 {
-  font-size: 16px;
-  font-weight: normal;
-  margin: 0 0 10px;
-}
-a {
-  color: #2479BA;
-  text-decoration: none;
-  outline: none;
-  &:hover {
-    text-decoration: underline;
   }
 }
 

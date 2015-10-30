@@ -1,0 +1,68 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  color: @font-color;
+  font-size: 14px;
+  font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Tahoma, Arial, sans-serif;
+  line-height: 1.4;
+}
+
+input,
+textarea,
+button,
+pre {
+  font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Tahoma, Arial, sans-serif;
+}
+
+pre, textarea {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+input {
+  &[type=text] {
+    .border-radius(0);
+  }
+  &[type=button],
+  &[type=submit],
+  &[type=search] {
+    -webkit-appearance: none;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+input, label {
+  vertical-align: middle;
+}
+
+// TODO: 可以商榷
+img {
+  border: 0;
+}
+
+// TODO: 应该不用吧，h2的样式应该随着业务的不同都有不同的定制，没法统一
+h2 {
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0 0 10px;
+}
+
+a {
+  color: #2479BA;
+  text-decoration: none;
+  outline: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
