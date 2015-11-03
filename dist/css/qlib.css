@@ -16,16 +16,6 @@ button,
 pre {
   font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Tahoma, Arial, sans-serif;
 }
-input,
-label {
-  vertical-align: middle;
-}
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px white inset;
-}
-img {
-  border: 0;
-}
 pre,
 textarea {
   white-space: pre-wrap;
@@ -43,18 +33,15 @@ input[type=submit],
 input[type=search] {
   -webkit-appearance: none;
 }
-h1.page_title {
-  font-size: 16px;
-  color: #000;
-  font-weight: normal;
-  margin: 15px 10px 10px;
-  text-shadow: 1px 1px 1px #bbb;
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
 }
-h1.page_title a {
-  margin-right: 15px;
+input,
+label {
+  vertical-align: middle;
 }
-h1.page_title a.button {
-  vertical-align: 4px;
+img {
+  border: 0;
 }
 h2 {
   font-size: 16px;
@@ -69,15 +56,16 @@ a {
 a:hover {
   text-decoration: underline;
 }
+/**
+ * 一些方便的帮助类，用于快速的实现某些 css 的效果
+ */
 .clearfix {
   display: block;
 }
 .clearfix:after {
   content: "";
   display: block;
-  height: 0;
   clear: both;
-  visibility: hidden;
 }
 .right {
   float: right;
@@ -96,4 +84,17 @@ a:hover {
   src: url('../font/qbt-font.eot?#iefix') format('embedded-opentype'), url('../font/qbt-font.woff') format('woff'), url('../font/qbt-font.ttf') format('truetype'), url('../font/qbt-font.svg#fontname') format('svg');
   font-weight: normal;
   font-style: normal;
+}
+h1.page_title {
+  font-size: 16px;
+  color: #000;
+  font-weight: normal;
+  margin: 15px 10px 10px;
+  text-shadow: 1px 1px 1px #bbb;
+}
+h1.page_title a {
+  margin-right: 15px;
+}
+h1.page_title a.button {
+  vertical-align: 4px;
 }

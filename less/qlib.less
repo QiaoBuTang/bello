@@ -1,29 +1,5 @@
 @import "_variable.less";
 @import "_mixin.less";
-
-h1 {
-  &.page_title {
-    font-size: 16px;
-    color: #000;
-    font-weight: normal;
-    margin: 15px 10px 10px;
-    text-shadow: 1px 1px 1px #bbb;
-    a {
-      margin-right: 15px;
-      &.button {
-        vertical-align: 4px;
-      }
-    }
-  }
-}
-
-@font-face {
-  font-family: 'qbt-font';
-  src: url('../font/qbt-font.eot');
-  src: url('../font/qbt-font.eot?#iefix') format('embedded-opentype'),
-  url('../font/qbt-font.woff') format('woff'),
-  url('../font/qbt-font.ttf') format('truetype'),
-  url('../font/qbt-font.svg#fontname') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
+@import "reset.less";
+@import "util.less";
+@import "site.less";
