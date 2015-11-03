@@ -1,0 +1,39 @@
+/**
+ * 一些方便的帮助类，用于快速的实现某些 css 的效果
+ */
+
+.clearfix {
+  display: block;
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+
+.inblock,
+.inline-block {
+  display: inline-block !important;
+  vertical-align: middle;
+}
+
+// TODO: 放在这是值得商榷的
+@font-face {
+  font-family: 'qbt-font';
+  src: url('../font/qbt-font.eot');
+  src: url('../font/qbt-font.eot?#iefix') format('embedded-opentype'),
+  url('../font/qbt-font.woff') format('woff'),
+  url('../font/qbt-font.ttf') format('truetype'),
+  url('../font/qbt-font.svg#fontname') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
