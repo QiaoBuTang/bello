@@ -7,7 +7,9 @@ root
   |- dist 产出目录，用于外部引用，如 `bower` 或者手动引入
   |- font 字体文件目录
   |- less 样式文件目录
-    |- reset.less 
+    |- reset.less  对于一些浏览器样式的 reset
+    |- util.less  一些方便使用的 class
+    |- site.less  各个子网站和主站都可能需要的样式 
   |- Makefile 构建文件，用于发布等
   |- package.json
 ```
