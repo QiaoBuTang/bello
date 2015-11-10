@@ -22,10 +22,10 @@
     "bower_components",
     "test",
     "tests",
-    "demo",
-    "font",
-    "img",
-    "less",
-    "views"
+    "/demo",
+    "/font",
+    "/img",
+    "/less",
+    "/views"
   ]
 }
