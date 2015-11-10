@@ -4,7 +4,7 @@ var less = require('gulp-less');
 gulp.task('default', ['less']);
 
 gulp.task('less', function () {
-    gulp.src('./less/qlib.less')
+    gulp.src('./less/bello.less')
         .pipe(less())
         .pipe(gulp.dest('./dist/css'))
 });

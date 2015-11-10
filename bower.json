@@ -1,7 +1,10 @@
 {
   "name": "bello",
   "description": "QBT Front-end Resource",
-  "main": "dist/qlib.css",
+  "main": [
+    "dist/qlib.css",
+    "dist/qlib.js"
+  ],
   "authors": [
     "GilbertSun <szb4321@gmail.com>"
   ],
@@ -18,6 +21,11 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "demo",
+    "font",
+    "img",
+    "less",
+    "views"
   ]
 }

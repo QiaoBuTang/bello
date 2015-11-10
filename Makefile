@@ -4,9 +4,8 @@ clean:
 	@rm -rf dist/**
 test:
 	@echo "test"
-	echo "aa"
 dist: clean
-	./node_modules/.bin/lessc ./less/qlib.less ./dist/css/qlib.css
+	./node_modules/.bin/lessc ./less/bello.less ./dist/css/bello.css
 	cp -r ./font ./img ./dist/
 tag: dist
 	git commit -am "release ${version}"
