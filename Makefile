@@ -1,4 +1,4 @@
-version = 0.0.6
+version = 0.0.7
 
 clean:
 	@rm -rf dist/**
@@ -10,4 +10,6 @@ dist: clean
 tag: dist
 	git commit -am "release ${version}"
 	git tag ${version}
+	git push origin master
+	git push orgin ${version}
 .PHONY: dist
