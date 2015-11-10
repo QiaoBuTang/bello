@@ -1,4 +1,4 @@
-version = v0.2
+version = v0.5
 
 clean:
 	@rm -rf dist/**
