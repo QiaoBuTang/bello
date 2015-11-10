@@ -371,7 +371,7 @@
             if (SelectByAjax.AjaxCache[api]) {
                 handler(JSON.parse(JSON.stringify(SelectByAjax.AjaxCache[api])));
             } else {
-                $.get(api).done(handler);
+                $.get(SELECT_ORIGIN + api).done(handler);
             }
         },
         _processAjaxData: function (options) {
