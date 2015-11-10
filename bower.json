@@ -27,5 +27,8 @@
     "/img",
     "/less",
     "/views"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "1.11.0"
+  }
 }

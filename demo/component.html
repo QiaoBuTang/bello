@@ -1,0 +1,46 @@
+<!--
+    Component demo page
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Component demo page</title>
+    <link rel="stylesheet" href="../dist/css/bello.css">
+    <link rel="stylesheet" href="../dist/css/component.css">
+</head>
+<body>
+    <div>
+        <div class="demo" id="component-select">
+            <h3>普通下拉菜单</h3>
+            <div class="new-dropdown new-dropdown__demo" data-component="select" data-value="1">
+                <div class="dropdown__trigger" data-dropdown-role="trigger">
+                    <span class="dropdown__indicator"></span>
+                    <div class="icon dropdown__icon"></div>
+                </div>
+                <div class="dropdown__list dropdown__list--theme-a" data-dropdown-role="list">
+                    <span class="option" data-value="0">不限</span>
+                    <span class="option" data-value="1">中国</span>
+                    <span class="option" data-value="2">美国</span>
+                    <span class="option" data-value="3">法国</span>
+                    <span class="option" data-value="4">德国</span>
+                    <span class="option" data-value="5">韩国</span>
+                </div>
+            </div>
+        </div>
+        <div class="demo" id="select-university">
+            <h3>选择学校</h3>
+            <div class="new-dropdown new-dropdown__demo" data-component="select-university" data-option-nolimit="[false, true]" data-option-maxlevel="3">
+                <div class="dropdown__trigger" data-dropdown-role="trigger">
+                    <span class="dropdown__indicator"></span>
+                    <div class="icon dropdown__icon"></div>
+                </div>
+                <div class="dropdown__list dropdown__list--auto dropdown__list--theme-c">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="../dist/js/component.js"></script>
+</body>
+</html>
