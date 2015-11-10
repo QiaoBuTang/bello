@@ -11,5 +11,5 @@ tag: dist
 	git commit -am "release ${version}"
 	git tag ${version}
 	git push origin master
-	git push orgin ${version}
+	git push origin ${version}
 .PHONY: dist
