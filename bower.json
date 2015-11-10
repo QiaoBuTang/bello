@@ -1,0 +1,23 @@
+{
+  "name": "bello",
+  "description": "QBT Front-end Resource",
+  "main": "dist/qlib.css",
+  "authors": [
+    "GilbertSun <szb4321@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "QBT",
+    "Front-End",
+    "bower"
+  ],
+  "homepage": "https://github.com/QiaoBuTang/bello",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
