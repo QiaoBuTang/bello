@@ -258,3 +258,77 @@
     }
   }
 }
+.ajax-select {
+  position: relative;
+  width: 400px;
+  min-height: 200px;
+  * {
+    .box-sizing()
+  }
+  .ajax-select__top {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    background: #F7F7F7;
+    font-size: 14px;
+    .ajax-select__prevstep {
+      float: right;
+      cursor: pointer;
+    }
+  }
+  .ajax-select__search {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    width: 260px;
+    height: 28px;
+    padding-left: 10px;
+    input {
+      height: 28px;
+      width: 200px;
+      font-size: 16px;
+      text-indent: 5px;
+      outline: 0;
+      border: 1px solid #FFA73F;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      vertical-align: top;
+    }
+    .search-btn {
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      background-color: #FFA73F;
+      color: #FFF;
+      vertical-align: top;
+    }
+  }
+  .ajax-select__main {
+    max-height: 200px;
+    overflow: auto;
+  }
+  &.loading {
+    &:after {
+      display: block;
+      color: #fff;
+      content: 'loading...';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      text-align: center;
+      line-height: 3;
+      background: #333;
+      .opacity(.6);
+    }
+  }
+}
+
