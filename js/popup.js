@@ -194,7 +194,7 @@ var BasePopup = $.extend(
 
         createButton: function (label) {
             return $('<button class="button" />').html(
-                $j('<span />').html(label)
+                $('<span />').html(label)
             );
         },
 
@@ -275,7 +275,7 @@ var DarkOverlayPopup = $.extend(
     {}, OverlayPopup,
     {
         overlayOptions: function () {
-            return $j.extend(
+            return $.extend(
                 {},
                 {
                     clickHandler: function () {},
