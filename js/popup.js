@@ -17,6 +17,69 @@ var Helper = {
     }*/
 };
 
+var BaseOverlay = $.extend(
+    {}, Base,
+    {
+        color: '#000',
+
+        opacity: '0.5',
+
+        zIndex: '99999',
+
+        getElement: function () {
+            var self = this;
+            if (Helper.isNullable(this.element)) {
+                this.element = $('<div class="overlay"></div>').css(
+                    {
+                        backgroundColor: self.color,
+                        opacity: self.opacity,
+                        zIndex: self.zIndex
+                    }
+                );
+            }
+            return this.element;
+        },
+
+        show: function () {
+            this.getElement().appendTo($('body')).show();
+        },
+
+        hide: function () {
+            this.getElement().remove();
+        },
+
+        init: function () {}
+    }
+);
+var FadeOverlay = $.extend(
+    {}, BaseOverlay,
+    {
+        duration: function () {
+            return 100;
+        },
+
+        clickHandler: function (event) {},
+
+        show: function () {
+            var self = this;
+            this.getElement().appendTo($('body')).fadeIn(this.duration()).off('click').click(
+                function (event) {
+                    self.clickHandler(event);
+                }
+            );
+        },
+
+        hide: function () {
+            this.getElement().fadeOut(
+                this.duration(),
+                function () {
+                    $(this).remove();
+                }
+            );
+        }
+    }
+);
+
 var BasePopup = $.extend(
     {}, Base,
     {
@@ -141,12 +204,10 @@ var BasePopup = $.extend(
                 label = '取消';
             }
 
-            return $('<a href="#"></a>').html(label).off('click').click(
-                function () {
-                    self.hide();
-                    return false;
-                }
-            );
+            return $('<a href="#"></a>').html(label).off('click').click(function () {
+                self.hide();
+                return false;
+            });
         },
         init: function () {}
     }
@@ -210,7 +271,7 @@ var OverlayPopup = $.extend(
         afterHide: function () {}
     }
 );
-var DarkOverlayPopup = $j.extend(
+var DarkOverlayPopup = $.extend(
     {}, OverlayPopup,
     {
         overlayOptions: function () {
