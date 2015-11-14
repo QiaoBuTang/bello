@@ -227,11 +227,19 @@
         }
     };
     Select.prototype._refreshInput = function () {
-        if (this.name === '' || typeof this.name !== 'string') return;
+        if (this.name === '') return;
         this.$inputContainer.empty();
-        $.each(this.value, $.proxy(function (index, value) {
-            this.$inputContainer.append($('<input type="hidden" name="' + this.name + '" value="' + value + '" />'));
-        }, this));
+        if (typeof this.name === 'string') {
+            $.each(this.value, $.proxy(function (index, value) {
+                this.$inputContainer.append($('<input type="hidden" name="' + this.name + '" value="' + value + '" />'));
+            }, this));
+        } else if (this.name instanceof Array) {
+            $.each(this.rvalue, $.proxy(function (index, value) {
+                var name = this.name[index];
+                if (!name) return;
+                this.$inputContainer.append($('<input type="hidden" name="' + name + '" value="' + value.value + '" />'));
+            }, this))
+        }
     };
     // 根据当前值高亮选项的功能，每个都有不同的实现
     Select.prototype._refreshOption = function () {
