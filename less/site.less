@@ -40,6 +40,9 @@ h1 {
     position: relative;
     width: 136px;
     height: 35px;
+    background-image: url(../img/logo.png);
+    background-image: -webkit-image-set(url(../img/logo.png) 1x,url(../img/logo@2x.png) 2x);
+    background-repeat: no-repeat;
     &:hover {
       -webkit-animation-name: mask;
       -webkit-animation-duration: 0.6s;
@@ -267,6 +270,30 @@ h1 {
   min-width: 1180px;
   margin: 0 auto;
   position: relative;
+  .new-message-count {
+    border-radius: 40px;
+    line-height: 1;
+    padding: 0px 3px 0;
+    text-align: center;
+    border: 2px solid #ffffff;
+    background: #ff0000;
+    line-height: 1;
+    text-align: center;
+    font-size: 12px;
+    color: #ffffff;
+    box-shadow: 1px 1px rgba(0,0,0,0.4);
+    position: absolute;
+    top: 2px;
+    font-weight: bold;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Helvetica, arial, freesans, clean, sans-serif;
+  }
+  .operations-submenu .new-message-count {
+    top: 9px;
+    left: 54px;
+  }
 }
 
 
@@ -330,5 +357,42 @@ h1 {
 .page_footer .m_link {
   a {
     margin-left: 5px;
+  }
+}
+
+// animation
+@-webkit-keyframes mask {
+  0% {
+    -webkit-mask: -webkit-gradient(radial, 17 17, 0, 17 17, 0, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));
+  }
+  10% {
+    -webkit-mask: -webkit-gradient(radial, 17 17, 12, 17 17, 26, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));
+  }
+  20% {
+    -webkit-mask: -webkit-gradient(radial, 17 17, 24, 17 17, 38, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));
+  }
+  30% {
+    -webkit-mask: -webkit-gradient(radial, 17 17, 36, 17 17, 52, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));
+  }
+  40% {
+    -webkit-mask: -webkit-gradient(radial, 17 17, 48, 17 17, 62, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));
+  }
+  50% {
+    -webkit-mask: -webkit-gradient(radial, 17 17, 50, 17 17, 64, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));
+  }
+  60% {
+    -webkit-mask: -webkit-gradient(radial, 17 17, 62, 17 17, 76, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));
+  }
+  70% {
+    -webkit-mask: -webkit-gradient(radial, 17 17, 74, 17 17, 88, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));
+  }
+  80% {
+    -webkit-mask: -webkit-gradient(radial, 17 17, 86, 17 17, 100, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));
+  }
+  90% {
+    -webkit-mask: -webkit-gradient(radial, 17 17, 98, 17 17, 112, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));
+  }
+  100% {
+    -webkit-mask: -webkit-gradient(radial, 17 17, 123, 17 17, 138, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.2)), to(rgb(0, 0, 0)));
   }
 }
