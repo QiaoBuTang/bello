@@ -210,6 +210,9 @@ a:hover {
 .icon-volume-down:before {
   content: '\e664';
 }
+body {
+  min-width: 1180px;
+}
 h1.page_title {
   font-size: 16px;
   color: #000;
