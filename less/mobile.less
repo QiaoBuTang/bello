@@ -1,0 +1,115 @@
+.provi-selector,
+.univ-selector,
+.college-selector,
+.city-selector {
+  width: 100%;
+  height: 100%;
+  padding: 50px 0;
+  background-color: #f4f5f3;
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  .option {
+    display: block;
+    color: #515255;
+    padding-left: 15px;
+    line-height: 40px;
+    border-bottom: 1px solid #e4e6ea;
+    background-color: #fff;
+    &:first-child {
+      border-top: 1px solid #e4e6ea;
+    }
+    &:active {
+      background-color: #efefef;
+    }
+  }
+  .head__back {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 22px;
+    color: #fff;
+    &:active {
+      background-color: darken(@btn-light-bc, 10%);
+    }
+  }
+}
+.provi-selector__head,
+.univ-selector__head,
+.college-selector__head,
+.city-selector__head {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  background-color: @btn-light-bc;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#provi-wrapper,
+#univ-wrapper,
+#college-wrapper,
+#city-wrapper {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+@-webkit-keyframes rotate {
+  0% {
+    .rotate(0);
+  }
+  100% {
+    .rotate(360deg);
+  }
+}
+@-ms-keyframes rotate {
+  0% {
+    .rotate(0);
+  }
+  100% {
+    .rotate(360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    .rotate(0);
+  }
+  100% {
+    .rotate(360deg);
+  }
+}
+.react__loading {
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding-top: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -40px;
+  margin-left: -40px;
+  z-index: 1000;
+  text-align: center;
+  border-top: 1px solid #F0F0F0;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  -ms-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  .translate(0, 20%, 0);
+  .loading__icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    font-size: 24px;
+    -webkit-animation:rotate 1s linear infinite;
+    -ms-animation:rotate 1s linear infinite;
+    animation:rotate 1s linear infinite;
+  }
+}
