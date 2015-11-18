@@ -11,7 +11,8 @@ dist: clean
 	mkdir ./dist/js && cat ./js/*.js > ./dist/js/component.js
 	cp -r ./font ./img ./dist/
 tag: dist
-	git commit -am "release ${version}"
+	git add .
+	git commit -m "release ${version}"
 	git tag ${version}
 	git push origin master
 	git push origin ${version}
