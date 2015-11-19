@@ -582,6 +582,9 @@ h1.page_title a.button {
   margin: 0 auto;
   width: 1002px;
 }
+.page_footer.no_border {
+  border-top: none;
+}
 .page_footer .powered_by {
   float: right;
   white-space: nowrap;
