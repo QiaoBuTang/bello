@@ -28,18 +28,18 @@ root
 **注意** 两种头部导航只有在0.0.18以后才支持
 
 因为要面对两种类型的头部,所以对头部的样式进行了一些调整,外部要包装一层 `div` 元素
+
 1. 对于普通的头
 
-```html
-<div class="page-header page-header_normal">
-    ${layout.header}
-</div>
-```
-
+    ```html
+    <div class="page-header page-header_normal">
+        ${layout.header}
+    </div>
+    ```
 2. 对于有二级导航菜单的头部
 
-```html
-<div class="page-header page-header_thin">
-    ${layout.header}
-</div>
-```
+    ```html
+    <div class="page-header page-header_thin">
+        ${layout.header}
+    </div>
+    ```
