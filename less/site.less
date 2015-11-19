@@ -407,9 +407,6 @@ h1 {
     margin: 0 auto;
     width: 1002px;
   }
-  &.no_border {
-    border-top: none;
-  }
 }
 .page_footer .powered_by {
   float: right;
@@ -466,31 +463,36 @@ h1 {
 }
 
 // fiend link
-.friendlinks {
-  padding: 10px 0;
-  margin-top:10px;
-  border-top: 1px solid #ccc;
-  color:#777;
-}
-.friendlinks h3 {
-  color: #000000;
-  font-size: 14px;
-  font-weight: normal;
-  margin-bottom: 6px;
-}
-.friendlinks .friendlinks-content {
-  list-style: none;
+.friend-link {
+  background: #faf9f0;
   overflow: hidden;
+  .friendlinks {
+    width: 1002px;
+    padding: 10px 0;
+    margin: 10px auto 0 auto;
+    border-top: 1px solid #ccc;
+    color:#777;
+  }
+  .friendlinks h3 {
+    color: #000000;
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 6px;
+  }
+  .friendlinks .friendlinks-content {
+    list-style: none;
+    overflow: hidden;
+  }
+  .friendlinks .friendlinks-content li {
+    width: 125px;
+    float: left;
+    margin-bottom: 4px;
+  }
+  .friendlinks .friendlinks-content li a {
+    font-size: 12px;
+    color: #777;
+  }
 }
-.friendlinks .friendlinks-content li {
-  width: 125px;
-  float: left;
-  margin-bottom: 4px;
-}
-.friendlinks .friendlinks-content li a {
-  color: #777;
-}
-
 // animation
 @-webkit-keyframes mask {
   0% {
