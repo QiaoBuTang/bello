@@ -26,7 +26,8 @@
     "/font",
     "/img",
     "/less",
-    "/views"
+    "/views",
+    "/js"
   ],
   "dependencies": {
     "jquery": "1.11.0"
