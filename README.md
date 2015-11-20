@@ -43,3 +43,10 @@ root
         ${layout.header}
     </div>
     ```
+### 友情链接
+
+```html
+<div class="friend-link">
+${friendLink}
+</div>    
+```
