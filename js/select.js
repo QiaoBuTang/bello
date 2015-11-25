@@ -234,7 +234,7 @@
                 this.$inputContainer.append($('<input type="hidden" name="' + this.name + '" value="' + value + '" />'));
             }, this));
         } else if (this.name instanceof Array) {
-            $.each(this.rvalue, $.proxy(function (index, value) {
+            $.each(this.value, $.proxy(function (index, value) {
                 var name = this.name[index];
                 if (!name) return;
                 this.$inputContainer.append($('<input type="hidden" name="' + name + '" value="' + value.value + '" />'));
@@ -340,7 +340,8 @@
             '<div>'
         ].join('')
     };
-    SelectByAjax.AjaxCache = {};
+    SelectByAjax.options = {}; // 选项的缓存
+    SelectByAjax.AjaxCache = {}; // ajax 结果的缓存
     SelectByAjax.prototype = $.extend({}, Select.prototype, {
         _constructor: SelectByAjax,
         render: function (level) {
@@ -355,6 +356,9 @@
             }());
             var handler = function (options) {
                 if (SelectByAjax.AjaxCache[api] === undefined) SelectByAjax.AjaxCache[api] = JSON.parse(JSON.stringify(options));
+                options.forEach(function (option) {
+                    SelectByAjax.options[option.value] = option.name;
+                });
                 _this.$container.removeClass('loading');
                 if (options.length === 0) {
                     _this.set(_this.levels[_this.currentLevel].value);
@@ -542,7 +546,7 @@
             }
         },
         getNameByValue: function (value) {
-            return this.cachedOptions[value] || false;
+            return SelectByAjax.options[value] || false;
         },
         _refreshOption: function () {
             $('.option.active', this.$element).removeClass('active');
@@ -674,6 +678,15 @@
                         api: function (levels) {
                             return '/api/province/cities/' + levels[1].value + '.json';
                         }
+                    }
+                ],
+                fullfill: [
+                    null,
+                    function (levels) {
+                        return '/api/' + levels[1].value + '/province.json';
+                    },
+                    function (levels) {
+                        return '/api/' + levels[2].value + '/university.json';
                     }
                 ]
             }
