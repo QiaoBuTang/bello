@@ -555,11 +555,9 @@
         _refreshOption: function () {
             $('.option.active', this.$element).removeClass('active');
             $.each(this.value, $.proxy(function (i, values) {
-                values.forEach(function (v) {
-                    var noLimitValue = this._getRealValue(null);
-                    if(v === noLimitValue) v = 'null';
-                    $('.option', this.$element).filter('[data-value=' + v + ']').addClass('active');
-                }.bind(this));
+                var value = values[this.currentLevel - 1];
+                if(value === null) value = 'null';
+                $('.option', this.$element).filter('[data-value=' + value + ']').addClass('active');
             }, this));
         },
         _getResult: function () {
@@ -568,6 +566,7 @@
             });
         },
         _refreshInput: function () {
+            this.$inputContainer.empty();
             if (this.name instanceof Array && this.value[0]) {
                 $.each(this.value[0], $.proxy(function (index, value) {
                     var name = this.name[index];
