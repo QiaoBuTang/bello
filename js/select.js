@@ -151,7 +151,7 @@
             this.$element.trigger('close');
             return;
         }
-        value = value + '';
+        value = value instanceof Array ? value : value + '';
         // 是否有与当前值相同或者有重复值
         if (this.has(value)) {
             this.$element.trigger('close');
@@ -299,12 +299,16 @@
 
     var SelectByAjax = function (ele, option) {
         Select.apply(this, arguments);
+        this.value = (function (_this) {
+            if (_this.value.length === 0) return _this.value;
+            else return [_this.value];
+        }(this));
 
         this.currentLevel = 0;
         this.$container = $('<div class="ajax-select" />').appendTo($('.dropdown__list', this.$element));
         // cache the selected option
         this.levels = [];
-        this.cachedOptions = this.$element.data('value') || {};
+        this.cachedOptions = {};
         this.options.nolimit = (function (_this) {
             var nolimit = _this.options.nolimit;
             var ret = [];
@@ -361,7 +365,7 @@
                 });
                 _this.$container.removeClass('loading');
                 if (options.length === 0) {
-                    _this.set(_this.levels[_this.currentLevel].value);
+                    _this.set(_this._getResult());
                     return;
                 }
                 _this.currentLevel = level;
@@ -476,7 +480,7 @@
                                     _this._remove(option.value);
                                 } else {
                                     _this._remove(_this._getRealValue(null), true);
-                                    _this.set(option.value);
+                                    _this.set(_this._getResult());
                                 }
                             }
                         }
@@ -498,7 +502,7 @@
                 this._remove($.map(this.currentOptions, function (option) {
                     return option.value;
                 }));
-                this.set(this.levels[this.currentLevel - 1].value);
+                this.set(this._getResult());
             } else {
                 this.removeAll();
             }
@@ -550,11 +554,58 @@
         },
         _refreshOption: function () {
             $('.option.active', this.$element).removeClass('active');
-            $.each(this.value, $.proxy(function (i, v) {
-                var noLimitValue = this._getRealValue(null);
-                if(v === noLimitValue) v = 'null';
-                $('.option', this.$element).filter('[data-value=' + v + ']').addClass('active');
+            $.each(this.value, $.proxy(function (i, values) {
+                values.forEach(function (v) {
+                    var noLimitValue = this._getRealValue(null);
+                    if(v === noLimitValue) v = 'null';
+                    $('.option', this.$element).filter('[data-value=' + v + ']').addClass('active');
+                }.bind(this));
             }, this));
+        },
+        _getResult: function () {
+            return this.levels.slice(1).map(function (option) {
+                return option.value;
+            });
+        },
+        _refreshInput: function () {
+            if (this.name instanceof Array && this.value[0]) {
+                $.each(this.value[0], $.proxy(function (index, value) {
+                    var name = this.name[index];
+                    value = value || '';
+                    if (!name) return;
+                    this.$inputContainer.append($('<input type="hidden" name="' + name + '" value="' + value + '" />'));
+                }, this))
+            }
+        },
+        _refreshIndicator: function () {
+            var _this = this;
+            this.$indicator.empty().removeClass('placeholder');
+            if (this.value[0].length === 0) {
+                this.$indicator.text(this.options.placeholder).addClass('placeholder');
+            } else {
+
+                var names = this.value[0].slice(0).reverse().map(function (value) {
+                    return value ? _this.getNameByValue(value) : 'passed';
+                });
+                for (var i = 0, len = names.length; i < len; i++) {
+                    var name = names[i];
+                    if (!name) {
+                        var value = _this.value[0][len - 1 - i];
+                        var api = _this.options.fullfill[len - 1 - i];
+                        if (api && api(value)) {
+                            $.get(SELECT_ORIGIN + api(value))
+                                    .then(function (res) {
+                                        Object.keys(res).forEach(function (key) {
+                                            SelectByAjax.options[res[key].value] = res[key].name;
+                                        });
+                                        _this._refreshIndicator();
+                                    });
+                        }
+                        return;
+                    }
+                }
+                this.$indicator.text(names.reverse().filter(function (name) {return name !== 'passed'}).join('-'));
+            }
         },
         afterSet: function () {
             this.rvalue.splice(this.currentLevel);
@@ -679,15 +730,6 @@
                             return '/api/province/cities/' + levels[1].value + '.json';
                         }
                     }
-                ],
-                fullfill: [
-                    null,
-                    function (levels) {
-                        return '/api/' + levels[1].value + '/province.json';
-                    },
-                    function (levels) {
-                        return '/api/' + levels[2].value + '/university.json';
-                    }
                 ]
             }
         },
@@ -709,6 +751,15 @@
                         api: function (levels) {
                             return '/api/province/university/colleges/' + levels[2].value + '.json';
                         }
+                    }
+                ],
+                fullfill: [
+                    null,
+                    function (val) {
+                        return '/api/' + val + '/province.json';
+                    },
+                    function (val) {
+                        return '/api/' + val + '/university.json';
                     }
                 ]
             }
