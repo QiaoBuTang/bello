@@ -441,7 +441,7 @@ var DarkOverlayPopup = $.extend(
             this.$element.trigger('close');
             return;
         }
-        value = value + '';
+        value = value instanceof Array ? value : value + '';
         // 是否有与当前值相同或者有重复值
         if (this.has(value)) {
             this.$element.trigger('close');
@@ -524,7 +524,7 @@ var DarkOverlayPopup = $.extend(
                 this.$inputContainer.append($('<input type="hidden" name="' + this.name + '" value="' + value + '" />'));
             }, this));
         } else if (this.name instanceof Array) {
-            $.each(this.rvalue, $.proxy(function (index, value) {
+            $.each(this.value, $.proxy(function (index, value) {
                 var name = this.name[index];
                 if (!name) return;
                 this.$inputContainer.append($('<input type="hidden" name="' + name + '" value="' + value.value + '" />'));
@@ -589,12 +589,16 @@ var DarkOverlayPopup = $.extend(
 
     var SelectByAjax = function (ele, option) {
         Select.apply(this, arguments);
+        this.value = (function (_this) {
+            if (_this.value.length === 0) return _this.value;
+            else return [_this.value];
+        }(this));
 
         this.currentLevel = 0;
         this.$container = $('<div class="ajax-select" />').appendTo($('.dropdown__list', this.$element));
         // cache the selected option
         this.levels = [];
-        this.cachedOptions = this.$element.data('value') || {};
+        this.cachedOptions = {};
         this.options.nolimit = (function (_this) {
             var nolimit = _this.options.nolimit;
             var ret = [];
@@ -630,7 +634,8 @@ var DarkOverlayPopup = $.extend(
             '<div>'
         ].join('')
     };
-    SelectByAjax.AjaxCache = {};
+    SelectByAjax.options = {}; // 选项的缓存
+    SelectByAjax.AjaxCache = {}; // ajax 结果的缓存
     SelectByAjax.prototype = $.extend({}, Select.prototype, {
         _constructor: SelectByAjax,
         render: function (level) {
@@ -645,9 +650,12 @@ var DarkOverlayPopup = $.extend(
             }());
             var handler = function (options) {
                 if (SelectByAjax.AjaxCache[api] === undefined) SelectByAjax.AjaxCache[api] = JSON.parse(JSON.stringify(options));
+                options.forEach(function (option) {
+                    SelectByAjax.options[option.value] = option.name;
+                });
                 _this.$container.removeClass('loading');
                 if (options.length === 0) {
-                    _this.set(_this.levels[_this.currentLevel].value);
+                    _this.set(_this._getResult());
                     return;
                 }
                 _this.currentLevel = level;
@@ -762,7 +770,7 @@ var DarkOverlayPopup = $.extend(
                                     _this._remove(option.value);
                                 } else {
                                     _this._remove(_this._getRealValue(null), true);
-                                    _this.set(option.value);
+                                    _this.set(_this._getResult());
                                 }
                             }
                         }
@@ -784,7 +792,7 @@ var DarkOverlayPopup = $.extend(
                 this._remove($.map(this.currentOptions, function (option) {
                     return option.value;
                 }));
-                this.set(this.levels[this.currentLevel - 1].value);
+                this.set(this._getResult());
             } else {
                 this.removeAll();
             }
@@ -832,15 +840,61 @@ var DarkOverlayPopup = $.extend(
             }
         },
         getNameByValue: function (value) {
-            return this.cachedOptions[value] || false;
+            return SelectByAjax.options[value] || false;
         },
         _refreshOption: function () {
             $('.option.active', this.$element).removeClass('active');
-            $.each(this.value, $.proxy(function (i, v) {
-                var noLimitValue = this._getRealValue(null);
-                if(v === noLimitValue) v = 'null';
-                $('.option', this.$element).filter('[data-value=' + v + ']').addClass('active');
+            $.each(this.value, $.proxy(function (i, values) {
+                var value = values[this.currentLevel - 1];
+                if(value === null) value = 'null';
+                $('.option', this.$element).filter('[data-value=' + value + ']').addClass('active');
             }, this));
+        },
+        _getResult: function () {
+            return this.levels.slice(1).map(function (option) {
+                return option.value;
+            });
+        },
+        _refreshInput: function () {
+            this.$inputContainer.empty();
+            if (this.name instanceof Array && this.value[0]) {
+                $.each(this.value[0], $.proxy(function (index, value) {
+                    var name = this.name[index];
+                    value = value || '';
+                    if (!name) return;
+                    this.$inputContainer.append($('<input type="hidden" name="' + name + '" value="' + value + '" />'));
+                }, this))
+            }
+        },
+        _refreshIndicator: function () {
+            var _this = this;
+            this.$indicator.empty().removeClass('placeholder');
+            if (this.value[0].length === 0) {
+                this.$indicator.text(this.options.placeholder).addClass('placeholder');
+            } else {
+
+                var names = this.value[0].slice(0).reverse().map(function (value) {
+                    return value ? _this.getNameByValue(value) : 'passed';
+                });
+                for (var i = 0, len = names.length; i < len; i++) {
+                    var name = names[i];
+                    if (!name) {
+                        var value = _this.value[0][len - 1 - i];
+                        var api = _this.options.fullfill[len - 1 - i];
+                        if (api && api(value)) {
+                            $.get(SELECT_ORIGIN + api(value))
+                                    .then(function (res) {
+                                        Object.keys(res).forEach(function (key) {
+                                            SelectByAjax.options[res[key].value] = res[key].name;
+                                        });
+                                        _this._refreshIndicator();
+                                    });
+                        }
+                        return;
+                    }
+                }
+                this.$indicator.text(_this.options.setLabel(names.reverse().map(function (name) {return name === 'passed' ? '' : name})));
+            }
         },
         afterSet: function () {
             this.rvalue.splice(this.currentLevel);
@@ -987,7 +1041,21 @@ var DarkOverlayPopup = $.extend(
                             return '/api/province/university/colleges/' + levels[2].value + '.json';
                         }
                     }
-                ]
+                ],
+                fullfill: [
+                    null,
+                    function (val) {
+                        return '/api/' + val + '/province.json';
+                    },
+                    function (val) {
+                        return '/api/' + val + '/university.json';
+                    }
+                ],
+                setLabel: function (names) {
+                    return names.slice(1).filter(function (name) {
+                        return name;
+                    }).join('-');
+                }
             }
         }
     };

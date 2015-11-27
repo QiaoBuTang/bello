@@ -603,7 +603,7 @@
                         return;
                     }
                 }
-                this.$indicator.text(names.reverse().filter(function (name) {return name !== 'passed'}).join('-'));
+                this.$indicator.text(_this.options.setLabel(names.reverse().map(function (name) {return name === 'passed' ? '' : name})));
             }
         },
         afterSet: function () {
@@ -760,7 +760,12 @@
                     function (val) {
                         return '/api/' + val + '/university.json';
                     }
-                ]
+                ],
+                setLabel: function (names) {
+                    return names.slice(1).filter(function (name) {
+                        return name;
+                    }).join('-');
+                }
             }
         }
     };
