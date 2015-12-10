@@ -637,6 +637,32 @@ h1.page_title a.button {
 .page_footer .m_link a {
   margin-left: 5px;
 }
+.qbt-footer.qbt-footer_v1 {
+  height: 64px;
+  line-height: 64px;
+  background: #444;
+}
+.qbt-footer.qbt-footer_v1 .qbt-footer__main {
+  width: 1180px;
+  margin: 0 auto;
+}
+.qbt-footer.qbt-footer_v1 .qbt-footer__logo {
+  display: inline-block;
+  width: 64px;
+  height: 34px;
+  background: url(../img/header_footer/footer/v1/foot_logo.png) no-repeat center;
+  vertical-align: middle;
+}
+.qbt-footer.qbt-footer_v1 .qbt-footer__desc {
+  display: inline-block;
+  margin-left: 25px;
+  font-size: 12px;
+}
+.qbt-footer.qbt-footer_v1 .qbt-footer__desc span,
+.qbt-footer.qbt-footer_v1 .qbt-footer__desc a {
+  padding: 0 5px;
+  color: #999;
+}
 .friend-link {
   background: #faf9f0;
   overflow: hidden;
