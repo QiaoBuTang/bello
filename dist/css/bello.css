@@ -641,6 +641,7 @@ h1.page_title a.button {
   height: 64px;
   line-height: 64px;
   background: #444;
+  overflow: hidden;
 }
 .qbt-footer.qbt-footer_v1 .qbt-footer__main {
   width: 1180px;
