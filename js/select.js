@@ -579,7 +579,7 @@
         _refreshIndicator: function () {
             var _this = this;
             this.$indicator.empty().removeClass('placeholder');
-            if (this.value[0].length === 0) {
+            if (this.value.length === 0 || this.value[0].length === 0) {
                 this.$indicator.text(this.options.placeholder).addClass('placeholder');
             } else {
 
