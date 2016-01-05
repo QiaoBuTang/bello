@@ -374,6 +374,18 @@ h1.page_title a.button {
   top: 9px;
   left: 54px;
 }
+.page-header.page-header_happy2016 .page_header .logo {
+  margin-top: 0;
+  width: 152px;
+  height: 50px;
+  background: url(../img/logo_new_year_2016.png) no-repeat;
+}
+.page-header.page-header_happy2016 .page_header .logo:hover {
+  -webkit-animation-name: mask;
+  -webkit-animation-duration: 0.6s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+}
 .page-header_normal .page_header {
   background: #fff;
   height: auto;
