@@ -812,9 +812,10 @@
  * 选择学校 包含海外院校
  */
 (function() {
-    var UniversitySelector = function(targetElement, selectorType) {
-        this.$trigger = targetElement;
-        this.selectorType = selectorType;
+    var UniversitySelector = function(option) {
+        this.$trigger = option.$trigger;
+        this.selectorType = option.selectorType;
+        this.addAny = option.addAny;
         this.deviceType = this.getDeviceType();
         this.API = {
             internalProvince: 'http://cv.qiaobutang.com/api/province.json',
@@ -908,18 +909,10 @@
     };
     UniversitySelector.prototype.setUICss = function() {
         if (this.deviceType) {
-            this.$container.addClass('mobile').css({
-                'position': 'absolute',
-                'left': 0,
-                'top': 0
-            });
+            this.$container.addClass('mobile');
         } else {
-            var offset = this.$trigger.offset();
-            this.$container.addClass('desktop').css({
-                'position': 'absolute',
-                'left': offset.left,
-                'top': offset.top + this.$trigger.outerHeight() + 5
-            });
+            //var offset = this.$trigger.offset();
+            this.$container.addClass('desktop');
         }
     };
     UniversitySelector.prototype.hiddenUI = function() {
@@ -937,7 +930,6 @@
         } else if (this.currentLevel === 1) {
             this.getData(this.currentDataType);
             this.selected = [];
-            this.$instructText.text('选择省/市');
         } else {
             this.selected.pop();
             var obj = this.selected.pop();
@@ -979,7 +971,8 @@
         var $options = data.map(function(item) {
             var value = item.value || item.countryId || item.universityId;
             return $('<a class="selector__option" href="javascript:;" data-value="' + value + '">' + item.name + '</a>')
-                .click(function(e) {
+                .on('click', function(e) {
+                    $(e.target).off('click');
                     that.drillNextLevelData(e.target.getAttribute('data-value'), e.target.innerHTML);
                 });
         });
@@ -997,6 +990,7 @@
             this.$search.hide();
             if (!this.deviceType) {
                 this.$instruct.hide();
+                this.$instructText.text('选择省/市');
             }
         }
         this.$list.empty().append($options);
@@ -1004,7 +998,11 @@
     UniversitySelector.prototype.drillNextLevelData = function(value, text) {
         this.selected.push({
             name: text,
-            value: value});
+            value: value === 'any' ? '' : value});
+        if (text === '不限') {
+            this.setValue();
+            return;
+        }
         switch (this.currentDataType) {
             case 'internalProvince':
                 if (this.selectorType === 'univ') {
@@ -1022,6 +1020,7 @@
             case 'foreignArea':
                 this.getData('foreignUniv', value);
                 this.currentDataType = 'foreignUniv';
+                this.apiInstruction.push('foreignUniv');
                 this.currentLevel = 2;
                 break;
             case 'internalUniv':
@@ -1052,6 +1051,12 @@
                 url,
                 function (res) {
                     if ($.isArray(res)) {
+                        if (that.addAny) {
+                            res.unshift({
+                                name: '不限',
+                                value: 'any'
+                            })
+                        }
                         that.apiCallback(res);
                     } else {
                         that.apiCallback(res.info);
@@ -1072,15 +1077,32 @@
         return obj;
     };
     UniversitySelector.prototype.setValue = function() {
-        var name = this.specialSelected(1).name;
+        var name;
+        if (this.selectorType === 'area') {
+            name = this.specialSelected(0).name;
+            var len = this.selected.length;
+            if (len > 1 && this.selected[len - 1].name === '不限') {
+                this.selected.pop();
+            }
+        } else {
+            name = this.specialSelected(1).name;
+        }
         this.$trigger.val(name.join(' - ')).attr('data-value', JSON.stringify(this.selected));
+        this.$trigger.trigger('change');
         this.selected = [];
         this.hiddenUI();
     };
     $.fn.universitySelector = function() {
-        new UniversitySelector($(this), 'univ');
+        new UniversitySelector({
+            $trigger : $(this),
+            selectorType: 'univ'
+        });
     };
-    $.fn.areaSelector = function() {
-        new UniversitySelector($(this), 'area');
+    $.fn.areaSelector = function(addAny) {
+        new UniversitySelector({
+            $trigger : $(this),
+            selectorType: 'area',
+            addAny: addAny
+        });
     }
 }(window.jQuery));

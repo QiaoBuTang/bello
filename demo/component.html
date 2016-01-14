@@ -50,11 +50,20 @@
                 </div>
             </div>
         </div>-->
+        <input type="text" readonly class="hwh" style="width: 300px;height: 30px;border: 1px solid #e9e9e9; padding: 5px; outline: none"/>
     </div>
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script>
         var SELECT_ORIGIN = 'http://cv.qiaobutang.com';
     </script>
     <script src="../js/select.js"></script>
+    <script>
+        $('.hwh').universitySelector();
+//        $('.hwh').areaSelector(false);
+
+        $('.hwh').on('change', function() {
+            alert(12);
+        })
+    </script>
 </body>
 </html>
