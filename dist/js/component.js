@@ -1097,3 +1097,280 @@ var DarkOverlayPopup = $.extend(
         $('[data-component|=select]').imitateSelect();
     });
 }(window.jQuery));
+
+/**
+ * 选择学校 包含海外院校
+ */
+(function() {
+    var UniversitySelector = function(targetElement, selectorType) {
+        this.$trigger = targetElement;
+        this.selectorType = selectorType;
+        this.deviceType = this.getDeviceType();
+        this.API = {
+            internalProvince: 'http://cv.qiaobutang.com/api/province.json',
+            foreignArea: 'http://www.qiaobutang.com/university_choice/foreign.json',
+            internalUniv: 'http://cv.qiaobutang.com/api/province/universities/',
+            foreignUniv: 'http://www.qiaobutang.com/university_choice/foreign/college.json',
+            internalCollege: 'http://cv.qiaobutang.com/api/province/university/colleges/',
+            internalCity: 'http://cv.qiaobutang.com/api/province/cities/'
+        };
+        this.apiInstruction = []; //api 调用的指示器
+        this.$container = null;
+        this.selected = [];
+        this.bindEvent();
+    };
+    UniversitySelector.prototype.getDeviceType = function () {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.search(/iphone|ipad|itouch/g) !== -1) {
+            return 'ios';
+        } else if (ua.search(/android/) !== -1) {
+            return 'android';
+        } else if (ua.search(/windows phone/) !== -1)  {
+            return 'windows phone';
+        } else {
+            return undefined;
+        }
+    };
+    UniversitySelector.prototype.getDiv = function(className) {
+        return $('<div class="' + className + '"></div>')
+    };
+    UniversitySelector.prototype.createUI = function() {
+        var that = this;
+
+        this.$container = this.getDiv('selector-wrapper');
+        this.$tab = null;
+        this.$head = this.getDiv('selector__head');
+        this.$body = this.getDiv('selector__body');
+        this.$list = this.getDiv('selector__list');
+        this.$closeIcon = $('<a href="javascript:;" class="selector__close"></a>');
+        this.$tip = this.getDiv('selector__tip');
+        this.$search = $('<input type="text" class="selector__search" placeholder="快速检索"/>').hide();
+        this.$instruct = this.getDiv('selector__instruct');
+        this.$back = $('<a href="javascript:;" class="selector__back"></a>');
+        this.$instructText = $('<span>选择省/市</span>');
+
+        this.$instruct.append(this.$back).append(this.$instructText);
+
+        if (this.selectorType === 'univ') {
+            this.$tab = this.getDiv('selector__tab');
+            this.$tab.append($('<a class="tab__item selected" href="javascript:;" data-type="internal">国内</a>'))
+                .append($('<a class="tab__item" href="javascript:;" data-type="foreign">国外</a>'))
+                .on('click', function(e) {
+                    that.apiInstruction.pop();
+                    if (e.target.getAttribute('data-type') === 'internal') {
+                        that.getData('internalProvince');
+                        that.currentDataType = 'internalProvince';
+                        that.apiInstruction.push('internalProvince');
+                    } else {
+                        that.getData('foreignArea');
+                        that.currentDataType = 'foreignArea';
+                        that.apiInstruction.push('foreignArea');
+                    }
+                    $(e.target).addClass('selected').siblings('a').removeClass('selected');
+                });
+        }
+        if (!this.deviceType) {
+            this.$instruct.hide();
+        }
+        this.$container
+            .append(
+                this.$head.append(this.$tab)
+                    .append(this.$instruct)
+                    .append(this.$search)
+                    .append(this.$closeIcon))
+            .append(this.$body.append(this.$list))
+            .append(this.$tip.append($('<a href="/help/feedback">没有您的院校?</a>')));
+        //右上角关闭事件
+        this.$closeIcon.on('click', function() {
+            that.hiddenUI();
+        });
+        //检索
+        this.$search.on('input', function() {
+            that.quickSearch($(this).val());
+        });
+        //回退
+        this.$back.on('click', function() {
+            that.getBack();
+        });
+        this.setUICss();
+        $('body').append(that.$container);
+
+    };
+    UniversitySelector.prototype.setUICss = function() {
+        if (this.deviceType) {
+            this.$container.addClass('mobile').css({
+                'position': 'absolute',
+                'left': 0,
+                'top': 0
+            });
+        } else {
+            var offset = this.$trigger.offset();
+            this.$container.addClass('desktop').css({
+                'position': 'absolute',
+                'left': offset.left,
+                'top': offset.top + this.$trigger.outerHeight() + 5
+            });
+        }
+    };
+    UniversitySelector.prototype.hiddenUI = function() {
+        this.$container.remove();
+        this.$container = null;
+        this.selected = [];
+        this.apiInstruction = [];
+    };
+    UniversitySelector.prototype.getBack = function() {
+        this.currentLevel--;
+        this.apiInstruction.pop();
+        this.currentDataType = this.apiInstruction[this.apiInstruction.length - 1];
+        if (this.currentLevel === 0) {
+            this.hiddenUI();
+        } else if (this.currentLevel === 1) {
+            this.getData(this.currentDataType);
+            this.selected = [];
+            this.$instructText.text('选择省/市');
+        } else {
+            this.selected.pop();
+            var obj = this.selected.pop();
+            this.drillNextLevelData(obj.value, obj.name);
+        }
+    };
+    UniversitySelector.prototype.quickSearch = function(item) {
+        this.$list.children('.selector__option').each(function() {
+            if ($(this).text().indexOf(item) === -1) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    };
+    UniversitySelector.prototype.bindEvent = function() {
+        var that = this;
+        this.$trigger.click(function () {
+            if (that.$container) {
+                that.hiddenUI();
+            } else {
+                that.getData('internalProvince');
+                that.createUI();
+                that.currentLevel = 1;
+                that.currentDataType = 'internalProvince';
+                that.apiInstruction.push('internalProvince');
+            }
+        });
+    };
+    UniversitySelector.prototype.apiCallback = function(data) {
+        if (data.length > 0) {
+            this.fillOption(data);
+        } else {
+            this.setValue();
+        }
+    };
+    UniversitySelector.prototype.fillOption = function(data) {
+        var that = this;
+        var $options = data.map(function(item) {
+            var value = item.value || item.countryId || item.universityId;
+            return $('<a class="selector__option" href="javascript:;" data-value="' + value + '">' + item.name + '</a>')
+                .click(function(e) {
+                    that.drillNextLevelData(e.target.getAttribute('data-value'), e.target.innerHTML);
+                });
+        });
+        if (this.currentLevel > 1) {
+            if (this.$tab) {
+                this.$tab.hide();
+            }
+            this.$instruct.show();
+            this.$search.show();
+            this.$instructText.text(this.specialSelected(0).name.join('/'));
+        } else {
+            if (this.$tab) {
+                this.$tab.show();
+            }
+            this.$search.hide();
+            if (!this.deviceType) {
+                this.$instruct.hide();
+            }
+        }
+        this.$list.empty().append($options);
+    };
+    UniversitySelector.prototype.drillNextLevelData = function(value, text) {
+        this.selected.push({
+            name: text,
+            value: value});
+        switch (this.currentDataType) {
+            case 'internalProvince':
+                if (this.selectorType === 'univ') {
+                    this.getData('internalUniv', value);
+                    this.currentDataType = 'internalUniv';
+                    this.apiInstruction.push('internalUniv');
+                    this.currentLevel = 2;
+                } else {
+                    this.getData('internalCity', value);
+                    this.currentDataType = 'internalCity';
+                    this.apiInstruction.push('internalCity');
+                    this.currentLevel = 2;
+                }
+                break;
+            case 'foreignArea':
+                this.getData('foreignUniv', value);
+                this.currentDataType = 'foreignUniv';
+                this.currentLevel = 2;
+                break;
+            case 'internalUniv':
+                this.currentDataType = 'internalCollege';
+                this.currentLevel = 3;
+                this.getData('internalCollege', value);
+                break;
+            default:
+                this.setValue();
+                break;
+        }
+    };
+    UniversitySelector.prototype.getData = function(key, id) {
+        var that = this;
+        var url = that.API[key] + (id ? (id + '.json') : '');
+        if (key === 'foreignUniv') {
+            $.get(
+                that.API[key],
+                {
+                    countryId: id
+                },
+                function (res) {
+                    that.apiCallback(res.info);
+                }
+            );
+        } else {
+            $.get(
+                url,
+                function (res) {
+                    if ($.isArray(res)) {
+                        that.apiCallback(res);
+                    } else {
+                        that.apiCallback(res.info);
+                    }
+                }
+            );
+        }
+    };
+    UniversitySelector.prototype.specialSelected = function(start) {
+        var obj = {
+            name: [],
+            value: []
+        };
+        for(var i = start, len = this.selected.length; i < len; i++) {
+            obj.name.push(this.selected[i].name);
+            obj.value.push(this.selected[i].value);
+        }
+        return obj;
+    };
+    UniversitySelector.prototype.setValue = function() {
+        var name = this.specialSelected(1).name;
+        this.$trigger.val(name.join(' - ')).attr('data-value', JSON.stringify(this.selected));
+        this.selected = [];
+        this.hiddenUI();
+    };
+    $.fn.universitySelector = function() {
+        new UniversitySelector($(this), 'univ');
+    };
+    $.fn.areaSelector = function() {
+        new UniversitySelector($(this), 'area');
+    }
+}(window.jQuery));
