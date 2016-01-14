@@ -1,10 +1,13 @@
 version = 0.1.11
 
+install:
+	@npm install --registry=https://registry.npm.taobao.org --disturl=https://npm.taobao.org/dist
+	@./node_modules/.bin/bower install
 clean:
 	@rm -rf dist/**
 test:
 	@echo "test not write"
-dist: clean
+dist: clean install
 	./node_modules/.bin/lessc ./less/bello.less ./dist/css/bello.css
 	./node_modules/.bin/lessc ./less/bello.mobile.less ./dist/css/bello.mobile.css
 	./node_modules/.bin/lessc ./less/component.less ./dist/css/component.css
@@ -16,4 +19,6 @@ tag: dist
 	git tag ${version}
 	git push origin master
 	git push origin ${version}
+demo: install
+	./node_modules/.bin/anywhere -p 3000
 .PHONY: dist
