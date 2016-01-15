@@ -1220,7 +1220,6 @@ var DarkOverlayPopup = $.extend(
         } else if (this.currentLevel === 1) {
             this.getData(this.currentDataType);
             this.selected = [];
-            this.$instructText.text('选择省/市');
         } else {
             this.selected.pop();
             var obj = this.selected.pop();
@@ -1281,6 +1280,7 @@ var DarkOverlayPopup = $.extend(
             this.$search.hide();
             if (!this.deviceType) {
                 this.$instruct.hide();
+                this.$instructText.text('选择省/市');
             }
         }
         this.$list.empty().append($options);
@@ -1310,6 +1310,7 @@ var DarkOverlayPopup = $.extend(
             case 'foreignArea':
                 this.getData('foreignUniv', value);
                 this.currentDataType = 'foreignUniv';
+                this.apiInstruction.push('foreignUniv');
                 this.currentLevel = 2;
                 break;
             case 'internalUniv':
