@@ -859,6 +859,7 @@
         this.$instruct = this.getDiv('selector__instruct');
         this.$back = $('<a href="javascript:;" class="selector__back"></a>');
         this.$instructText = $('<span>选择省/市</span>');
+        this.$loading = $('<div class="selector__loading"></div>').hide();
 
         this.$instruct.append(this.$back).append(this.$instructText);
 
@@ -890,7 +891,8 @@
                     .append(this.$search)
                     .append(this.$closeIcon))
             .append(this.$body.append(this.$list))
-            .append(this.$tip.append($('<a href="/help/feedback">没有您的院校?</a>')));
+            .append(this.$tip.append($('<a href="/help/feedback">没有您的院校?</a>')))
+            .append(this.$loading);
         //右上角关闭事件
         this.$closeIcon.on('click', function() {
             that.hiddenUI();
@@ -951,8 +953,8 @@
             if (that.$container) {
                 that.hiddenUI();
             } else {
-                that.getData('internalProvince');
                 that.createUI();
+                that.getData('internalProvince');
                 that.currentLevel = 1;
                 that.currentDataType = 'internalProvince';
                 that.apiInstruction.push('internalProvince');
@@ -1036,6 +1038,7 @@
     UniversitySelector.prototype.getData = function(key, id) {
         var that = this;
         var url = that.API[key] + (id ? (id + '.json') : '');
+        that.$loading.show();
         if (key === 'foreignUniv') {
             $.get(
                 that.API[key],
@@ -1043,6 +1046,7 @@
                     countryId: id
                 },
                 function (res) {
+                    that.$loading.hide();
                     that.apiCallback(res.info);
                 }
             );
@@ -1050,6 +1054,7 @@
             $.get(
                 url,
                 function (res) {
+                    that.$loading.hide();
                     if ($.isArray(res)) {
                         if (that.addAny) {
                             res.unshift({
