@@ -1149,7 +1149,7 @@ var DarkOverlayPopup = $.extend(
         this.$instruct = this.getDiv('selector__instruct');
         this.$back = $('<a href="javascript:;" class="selector__back"></a>');
         this.$instructText = $('<span>选择省/市</span>');
-        this.$loading = $('<div class="selector__loading">s</div>').hide();
+        this.$loading = $('<div class="selector__loading"></div>').hide();
 
         this.$instruct.append(this.$back).append(this.$instructText);
 
