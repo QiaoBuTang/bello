@@ -1083,13 +1083,15 @@
     };
     UniversitySelector.prototype.setValue = function() {
         var name;
-
-        name = this.specialSelected(0).name;
-        var len = this.selected.length;
-        if (len > 1 && this.selected[len - 1].name === '不限') {
-            this.selected.pop();
+        if (this.selectorType === 'area') {
+            name = this.specialSelected(0).name;
+            var len = this.selected.length;
+            if (len > 1 && this.selected[len - 1].name === '不限') {
+                this.selected.pop();
+            }
+        } else {
+            name = this.specialSelected(1).name;
         }
-
         this.$trigger.val(name.join(' - ')).attr('data-value', JSON.stringify(this.selected));
         this.$trigger.trigger('change');
         this.selected = [];
