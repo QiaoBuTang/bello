@@ -816,7 +816,7 @@
         this.$trigger = option.$trigger;
         this.selectorType = option.selectorType;
         this.addAny = option.addAny;
-        this.drill = option.drill;
+        this.drill = option.drill; //数据钻取层级
         this.deviceType = this.getDeviceType();
         this.API = {
             internalProvince: 'http://cv.qiaobutang.com/api/province.json',
@@ -1102,8 +1102,8 @@
         new UniversitySelector({
             $trigger : $(this),
             selectorType: 'univ',
-            addAny: option.addAny,
-            drill: option.drill
+            addAny: option.addAny, //boolean 是否添加不限
+            drill: option.drill //数据钻取层级
         });
     };
     $.fn.areaSelector = function(option) {
@@ -1111,7 +1111,7 @@
             $trigger : $(this),
             selectorType: 'area',
             addAny: option.addAny,
-            drill: option.drill
+            drill: option.drill  //数据钻取层级
         });
     }
 }(window.jQuery));
