@@ -1387,10 +1387,11 @@ var DarkOverlayPopup = $.extend(
         this.selected = [];
         this.hiddenUI();
     };
-    $.fn.universitySelector = function() {
+    $.fn.universitySelector = function(addAny) {
         new UniversitySelector({
             $trigger : $(this),
-            selectorType: 'univ'
+            selectorType: 'univ',
+            addAny: addAny
         });
     };
     $.fn.areaSelector = function(addAny) {

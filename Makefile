@@ -1,4 +1,4 @@
-version = 0.1.14
+version = 0.1.15
 
 install:
 	@npm install --registry=https://registry.npm.taobao.org --disturl=https://npm.taobao.org/dist
