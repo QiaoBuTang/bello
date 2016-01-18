@@ -58,8 +58,14 @@
     </script>
     <script src="../js/select.js"></script>
     <script>
-        $('.hwh').universitySelector();
-//        $('.hwh').areaSelector(false);
+        $('.hwh').universitySelector({
+            addAny: false,
+            drill: 1
+        });
+//        $('.hwh').areaSelector({
+//            addAny: true,
+//            drill: 1
+//        });
 
         $('.hwh').on('change', function() {
             alert(12);
