@@ -1106,6 +1106,7 @@ var DarkOverlayPopup = $.extend(
         this.$trigger = option.$trigger;
         this.selectorType = option.selectorType;
         this.addAny = option.addAny;
+        this.drill = option.drill; //数据钻取层级
         this.deviceType = this.getDeviceType();
         this.API = {
             internalProvince: 'http://cv.qiaobutang.com/api/province.json',
@@ -1291,7 +1292,7 @@ var DarkOverlayPopup = $.extend(
         this.selected.push({
             name: text,
             value: value === 'any' ? '' : value});
-        if (text === '不限') {
+        if (text === '不限' || (this.drill ===1 && this.currentLevel === 1)) {
             this.setValue();
             return;
         }
@@ -1387,18 +1388,20 @@ var DarkOverlayPopup = $.extend(
         this.selected = [];
         this.hiddenUI();
     };
-    $.fn.universitySelector = function(addAny) {
+    $.fn.universitySelector = function(option) {
         new UniversitySelector({
             $trigger : $(this),
             selectorType: 'univ',
-            addAny: addAny
+            addAny: option.addAny, //boolean 是否添加不限
+            drill: option.drill //数据钻取层级
         });
     };
-    $.fn.areaSelector = function(addAny) {
+    $.fn.areaSelector = function(option) {
         new UniversitySelector({
             $trigger : $(this),
             selectorType: 'area',
-            addAny: addAny
+            addAny: option.addAny,
+            drill: option.drill  //数据钻取层级
         });
     }
 }(window.jQuery));
