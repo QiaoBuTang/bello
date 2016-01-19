@@ -911,6 +911,9 @@
             that.getBack();
         });
         this.setUICss();
+
+        $('.selector-wrapper').remove();
+
         $('body').append(that.$container);
         //
         this.$container.on('click', function(e) {
