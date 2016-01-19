@@ -1407,17 +1407,17 @@ var DarkOverlayPopup = $.extend(
         new UniversitySelector({
             $trigger : $(this),
             selectorType: 'univ',
-            addAny: option.addAny, //boolean 是否添加不限
-            drill: option.drill, //数据钻取层级,
-            addAnyAtLevel: 3
+            addAny: option ? option.addAny : false, //boolean 是否添加不限
+            drill: option ? option.drill : '', //数据钻取层级,
+            addAnyAtLevel: option ? option.addAnyAtLevel : ''
         });
     };
     $.fn.areaSelector = function(option) {
         new UniversitySelector({
             $trigger : $(this),
             selectorType: 'area',
-            addAny: option.addAny,
-            drill: option.drill  //数据钻取层级
+            addAny: ooption ? option.addAny : false,
+            drill: option ? option.drill : ''  //数据钻取层级
         });
     }
 }(window.jQuery));
