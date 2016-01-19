@@ -1126,7 +1126,7 @@
         new UniversitySelector({
             $trigger : $(this),
             selectorType: 'area',
-            addAny: ooption ? option.addAny : false,
+            addAny: option ? option.addAny : false,
             drill: option ? option.drill : ''  //数据钻取层级
         });
     }
