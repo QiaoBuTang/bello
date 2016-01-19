@@ -378,7 +378,9 @@ h1.page_title a.button {
   margin-top: 0;
   width: 152px;
   height: 50px;
-  background: url(../img/logo_new_year_2016.png) no-repeat;
+  background-image: url(../img/logo_new_year_2016.png);
+  background-image: -webkit-image-set(url(../img/logo_new_year_2016.png) 1x, url(../img/logo_new_year_2016@2x.png) 2x);
+  background-repeat: no-repeat;
 }
 .page-header.page-header_happy2016 .page_header .logo:hover {
   -webkit-animation-name: mask;
