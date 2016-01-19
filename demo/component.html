@@ -58,14 +58,15 @@
     </script>
     <script src="../js/select.js"></script>
     <script>
-        $('.hwh').universitySelector({
-            addAny: false,
-            drill: 1
-        });
-//        $('.hwh').areaSelector({
-//            addAny: true,
-//            drill: 1
+//        $('.hwh').universitySelector({
+//            addAny: false,
+//            addAnyAtLevel: 3
+//
 //        });
+        $('.hwh').areaSelector({
+            addAny: true,
+            drill: ''
+        });
 
         $('.hwh').on('change', function() {
             alert(12);

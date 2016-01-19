@@ -817,6 +817,7 @@
         this.selectorType = option.selectorType;
         this.addAny = option.addAny;
         this.drill = option.drill; //数据钻取层级
+        this.addAnyAtLevel = option.addAnyAtLevel; //在指定层级 添加不限
         this.deviceType = this.getDeviceType();
         this.API = {
             internalProvince: 'http://cv.qiaobutang.com/api/province.json',
@@ -899,15 +900,27 @@
             that.hiddenUI();
         });
         //检索
-        this.$search.on('input', function() {
+        this.$search.on('input', function(e) {
             that.quickSearch($(this).val());
         });
+        this.$search.on('click', function(e) {
+        });
         //回退
-        this.$back.on('click', function() {
+        this.$back.on('click', function(e) {
+            e.stopPropagation();
             that.getBack();
         });
         this.setUICss();
         $('body').append(that.$container);
+        //
+        this.$container.on('click', function(e) {
+            e.stopPropagation();
+        });
+        $(document).on('click', function () {
+            if(this.$container) {
+                this.hiddenUI();
+            }
+        }.bind(this));
 
     };
     UniversitySelector.prototype.setUICss = function() {
@@ -923,6 +936,7 @@
         this.$container = null;
         this.selected = [];
         this.apiInstruction = [];
+        $(document).off('click');
     };
     UniversitySelector.prototype.getBack = function() {
         this.currentLevel--;
@@ -950,7 +964,8 @@
     };
     UniversitySelector.prototype.bindEvent = function() {
         var that = this;
-        this.$trigger.click(function () {
+        this.$trigger.click(function (e) {
+            e.stopPropagation();
             if (that.$container) {
                 that.hiddenUI();
             } else {
@@ -1057,7 +1072,7 @@
                 function (res) {
                     that.$loading.hide();
                     if ($.isArray(res)) {
-                        if (that.addAny) {
+                        if (that.addAny || (that.currentLevel=== that.addAnyAtLevel)) {
                             res.unshift({
                                 name: '不限',
                                 value: 'any'
@@ -1103,7 +1118,8 @@
             $trigger : $(this),
             selectorType: 'univ',
             addAny: option.addAny, //boolean 是否添加不限
-            drill: option.drill //数据钻取层级
+            drill: option.drill, //数据钻取层级,
+            addAnyAtLevel: 3
         });
     };
     $.fn.areaSelector = function(option) {
