@@ -905,7 +905,6 @@
   text-decoration: none;
 }
 .selector-wrapper.desktop .selector__tip {
-  display: none;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -918,6 +917,12 @@
 .selector-wrapper.desktop .selector__tip a {
   color: #888;
   font-size: 13px;
+}
+.selector-wrapper.selector-wrapper_area {
+  padding-bottom: 0;
+}
+.selector-wrapper.selector-wrapper_area .selector__tip {
+  display: none;
 }
 .selector-wrapper.mobile {
   top: 0;

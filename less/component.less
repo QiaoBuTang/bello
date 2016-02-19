@@ -914,7 +914,6 @@
       }
     }
     .selector__tip {
-      display: none;
       position: absolute;
       bottom: 0;
       left: 0;
@@ -927,6 +926,12 @@
         color: #888;
         font-size: 13px;
       }
+    }
+  }
+  &.selector-wrapper_area {
+    padding-bottom: 0;
+    .selector__tip {
+      display: none;
     }
   }
   &.mobile {
