@@ -850,7 +850,7 @@
     UniversitySelector.prototype.createUI = function() {
         var that = this;
 
-        this.$container = this.getDiv('selector-wrapper');
+        this.$container = this.selectorType === 'univ' ? this.getDiv('selector-wrapper') : this.getDiv('selector-wrapper selector-wrapper_area');
         this.$tab = null;
         this.$head = this.getDiv('selector__head');
         this.$body = this.getDiv('selector__body');
