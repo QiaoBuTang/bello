@@ -918,6 +918,12 @@
   color: #888;
   font-size: 13px;
 }
+.selector-wrapper.selector-wrapper_area {
+  padding-bottom: 0;
+}
+.selector-wrapper.selector-wrapper_area .selector__tip {
+  display: none;
+}
 .selector-wrapper.mobile {
   top: 0;
   left: 0;
