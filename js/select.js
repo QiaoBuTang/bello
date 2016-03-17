@@ -1020,7 +1020,7 @@
         this.selected.push({
             name: text,
             value: value === 'any' ? '' : value});
-        if (text === '不限' || (this.drill ===1 && this.currentLevel === 1)) {
+        if (text === '不限' || (this.drill ===1 && this.currentLevel === 1) || text === '全国') {
             this.setValue();
             return;
         }
@@ -1075,12 +1075,20 @@
                 function (res) {
                     that.$loading.hide();
                     if ($.isArray(res)) {
-                        if (that.addAny || (that.currentLevel=== that.addAnyAtLevel)) {
+                        if (that.addAny && key === 'internalProvince') {        
                             res.unshift({
-                                name: '不限',
-                                value: 'any'
+                                name: '全国',
+                                value: '_CHS'
                             })
+                        } else {
+                            if (that.addAny || (that.currentLevel=== that.addAnyAtLevel)) {
+                                res.unshift({
+                                    name: '不限',
+                                    value: 'any'
+                                })
+                            }
                         }
+                        
                         that.apiCallback(res);
                     } else {
                         that.apiCallback(res.info);
