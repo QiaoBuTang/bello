@@ -1109,6 +1109,7 @@ var DarkOverlayPopup = $.extend(
         this.drill = option.drill; //数据钻取层级
         this.addAnyAtLevel = option.addAnyAtLevel; //在指定层级 添加不限
         this.deviceType = this.getDeviceType();
+        this.feedbackFrom = option.feedbackFrom;
         this.API = {
             internalProvince: 'http://cv.qiaobutang.com/api/province.json',
             foreignArea: 'http://www.qiaobutang.com/university_choice/foreign.json',
@@ -1176,6 +1177,7 @@ var DarkOverlayPopup = $.extend(
         if (!this.deviceType) {
             this.$instruct.hide();
         }
+        console.log(this.feedbackFrom);
         this.$container
             .append(
                 this.$head.append(this.$tab)
@@ -1183,7 +1185,7 @@ var DarkOverlayPopup = $.extend(
                     .append(this.$search)
                     .append(this.$closeIcon))
             .append(this.$body.append(this.$list))
-            .append(this.$tip.append($('<a href="/help/feedback">没有您的院校?</a>')))
+            .append(this.$tip.append($('<a href="http://cv.qiaobutang.com/help/feedback?' + this.feedbackFrom + '">没有您的院校?</a>')))
             .append(this.$loading);
         //右上角关闭事件
         this.$closeIcon.on('click', function() {

@@ -819,6 +819,7 @@
         this.drill = option.drill; //数据钻取层级
         this.addAnyAtLevel = option.addAnyAtLevel; //在指定层级 添加不限
         this.deviceType = this.getDeviceType();
+        this.feedbackFrom = option.feedbackFrom;
         this.API = {
             internalProvince: 'http://cv.qiaobutang.com/api/province.json',
             foreignArea: 'http://www.qiaobutang.com/university_choice/foreign.json',
@@ -893,7 +894,7 @@
                     .append(this.$search)
                     .append(this.$closeIcon))
             .append(this.$body.append(this.$list))
-            .append(this.$tip.append($('<a href="/help/feedback">没有您的院校?</a>')))
+            .append(this.$tip.append($('<a target="_blank" href="http://cv.qiaobutang.com/help/feedback?' + this.feedbackFrom + '">没有您的院校?</a>')))
             .append(this.$loading);
         //右上角关闭事件
         this.$closeIcon.on('click', function() {
@@ -1130,7 +1131,8 @@
             selectorType: 'univ',
             addAny: option ? option.addAny : false, //boolean 是否添加不限
             drill: option ? option.drill : '', //数据钻取层级,
-            addAnyAtLevel: option ? option.addAnyAtLevel : ''
+            addAnyAtLevel: option ? option.addAnyAtLevel : '',
+            feedbackFrom: option ? option.feedbackFrom : ''
         });
     };
     $.fn.areaSelector = function(option) {
