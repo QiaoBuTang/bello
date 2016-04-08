@@ -1270,6 +1270,9 @@ var DarkOverlayPopup = $.extend(
                 that.apiInstruction.push('internalProvince');
             }
         });
+        this.$trigger.focus(function(){
+            that.$trigger.trigger('click');
+        });
     };
     UniversitySelector.prototype.apiCallback = function(data) {
         if (data.length > 0) {
