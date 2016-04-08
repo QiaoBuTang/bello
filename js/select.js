@@ -921,10 +921,10 @@
             e.stopPropagation();
         });
         $(document).on('click', function () {
-            if(this.$container) {
-                this.hiddenUI();
+            if(that.$container) {
+                that.hiddenUI();
             }
-        }.bind(this));
+        });
 
     };
     UniversitySelector.prototype.setUICss = function() {
@@ -979,6 +979,9 @@
                 that.currentDataType = 'internalProvince';
                 that.apiInstruction.push('internalProvince');
             }
+        });
+        this.$trigger.focus(function(){
+            that.$trigger.trigger('click');
         });
     };
     UniversitySelector.prototype.apiCallback = function(data) {

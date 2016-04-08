@@ -1177,7 +1177,6 @@ var DarkOverlayPopup = $.extend(
         if (!this.deviceType) {
             this.$instruct.hide();
         }
-        console.log(this.feedbackFrom);
         this.$container
             .append(
                 this.$head.append(this.$tab)
@@ -1185,7 +1184,7 @@ var DarkOverlayPopup = $.extend(
                     .append(this.$search)
                     .append(this.$closeIcon))
             .append(this.$body.append(this.$list))
-            .append(this.$tip.append($('<a href="http://cv.qiaobutang.com/help/feedback?' + this.feedbackFrom + '">没有您的院校?</a>')))
+            .append(this.$tip.append($('<a target="_blank" href="http://cv.qiaobutang.com/help/feedback?' + this.feedbackFrom + '">没有您的院校?</a>')))
             .append(this.$loading);
         //右上角关闭事件
         this.$closeIcon.on('click', function() {
@@ -1212,10 +1211,10 @@ var DarkOverlayPopup = $.extend(
             e.stopPropagation();
         });
         $(document).on('click', function () {
-            if(this.$container) {
-                this.hiddenUI();
+            if(that.$container) {
+                that.hiddenUI();
             }
-        }.bind(this));
+        });
 
     };
     UniversitySelector.prototype.setUICss = function() {
@@ -1422,7 +1421,8 @@ var DarkOverlayPopup = $.extend(
             selectorType: 'univ',
             addAny: option ? option.addAny : false, //boolean 是否添加不限
             drill: option ? option.drill : '', //数据钻取层级,
-            addAnyAtLevel: option ? option.addAnyAtLevel : ''
+            addAnyAtLevel: option ? option.addAnyAtLevel : '',
+            feedbackFrom: option ? option.feedbackFrom : ''
         });
     };
     $.fn.areaSelector = function(option) {
