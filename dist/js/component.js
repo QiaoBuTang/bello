@@ -1270,9 +1270,9 @@ var DarkOverlayPopup = $.extend(
                 that.apiInstruction.push('internalProvince');
             }
         });
-        this.$trigger.focus(function(){
-            that.$trigger.trigger('click');
-        });
+        // this.$trigger.focus(function(){
+        //     that.$trigger.trigger('click');
+        // });
     };
     UniversitySelector.prototype.apiCallback = function(data) {
         if (data.length > 0) {
@@ -1348,25 +1348,37 @@ var DarkOverlayPopup = $.extend(
                 break;
         }
     };
+    UniversitySelector.prototype.tryAgain = function(key, id) {
+       var $tryAgain =  $('<a class="selector__tryAgain" href="javascript:;">出错咯，请重试</a>');
+       var that = this;
+       this.$loading.hide();
+       this.$container.append($tryAgain);
+       $tryAgain.click(function() {
+            that.getData(key, id);
+            $tryAgain.remove();
+       });
+    },
     UniversitySelector.prototype.getData = function(key, id) {
         var that = this;
         var url = that.API[key] + (id ? (id + '.json') : '');
         that.$loading.show();
         if (key === 'foreignUniv') {
-            $.get(
-                that.API[key],
-                {
-                    countryId: id
-                },
-                function (res) {
+            $.ajax({
+                type: 'GET',
+                url: that.API[key],
+                success: function(res) {
                     that.$loading.hide();
                     that.apiCallback(res.info);
+                },
+                error: function(){
+                    that.tryAgain(key, id);
                 }
-            );
+            });
         } else {
-            $.get(
-                url,
-                function (res) {
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function (res) {
                     that.$loading.hide();
                     if ($.isArray(res)) {
                         if (that.addAny && key === 'internalProvince') {        
@@ -1387,8 +1399,11 @@ var DarkOverlayPopup = $.extend(
                     } else {
                         that.apiCallback(res.info);
                     }
+                },
+                error: function(){
+                    that.tryAgain(key, id);
                 }
-            );
+            });
         }
     };
     UniversitySelector.prototype.specialSelected = function(start) {
