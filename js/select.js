@@ -1076,6 +1076,9 @@
             $.ajax({
                 type: 'GET',
                 url: that.API[key],
+                data: {
+                    countryId: id
+                },
                 success: function(res) {
                     that.$loading.hide();
                     that.apiCallback(res.info);
