@@ -482,32 +482,46 @@ h1.page_title a.button {
 .page-header_normal .page_header .modules-menu .selected a {
   border-bottom: 2px solid #0097e0;
 }
+.page-header_normal .page_header .global-register-item,
+.page-header_normal .page_header .global-login-item {
+  margin-top: -6px;
+  overflow: hidden;
+}
 .page-header_normal .page_header .global-register-item a,
 .page-header_normal .page_header .global-login-item a {
   width: 79px;
-  height: 35px;
-  line-height: 35px;
+  height: auto;
+  line-height: 58px;
   font-size: 14px;
-  margin-top: 6px;
-  color: #fff;
-  background-color: #0097e0;
+  background: none;
 }
-.page-header_normal .page_header .global-login-item {
-  margin-right: 15px;
+.page-header_normal .page_header .global-login-item a {
+  color: #07c7fb;
+  background-color: #f9f9f9;
+  border-top: 3px solid #00c7fd;
+  line-height: 55px;
 }
 .page-header_normal .page_header .global-register-item a {
-  border: 1px solid #0097e0;
-  color: #0097e0;
-  background-color: #fff;
+  color: #333;
 }
 .page-header_normal .page_header .global-register-item a:hover {
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
 .page-header_normal .page_header_content {
   width: 1180px;
   min-width: 1180px;
   margin: 0 auto;
   position: relative;
+}
+.page-header_normal .recruitment {
+  float: right;
+  line-height: 58px;
+  color: #999;
+  border-left: 1px solid #f9f9f9;
+  padding: 0 20px;
+}
+.page-header_normal .recruitment:hover {
+  text-decoration: none;
 }
 .page-header_thin .page_header {
   background: #2479ba;

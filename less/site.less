@@ -291,26 +291,29 @@ h1 {
 
     .global-register-item,
     .global-login-item {
+      margin-top: -6px;
+      overflow: hidden;
       a {
         width: 79px;
-        height: 35px;
-        line-height: 35px;
+        height: auto;
+        line-height: 58px;
         font-size: 14px;
-        margin-top: 6px;
-        color: #fff;
-        background-color: #0097e0;
+        background: none;
       }
     }
     .global-login-item {
-      margin-right: 15px;
+      a {
+        color: #07c7fb;
+        background-color: #f9f9f9;
+        border-top: 3px solid #00c7fd;
+        line-height: 55px;
+      }
     }
     .global-register-item {
       a {
-        border: 1px solid #0097e0;
-        color: #0097e0;
-        background-color: #fff;
+        color: #333;
         &:hover {
-          background-color: #fff;
+          background-color: #f9f9f9;
         }
       }
     }
@@ -320,6 +323,17 @@ h1 {
     min-width: 1180px;
     margin: 0 auto;
     position: relative;
+  }
+  //我的招聘
+  .recruitment {
+    float: right;
+    line-height: 58px;
+    color: #999;
+    border-left: 1px solid #f9f9f9;
+    padding: 0 20px;
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 .page-header_thin {
