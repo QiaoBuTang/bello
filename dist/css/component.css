@@ -1,4 +1,4 @@
-.icon-uniE60F-1:before {
+.icon-uniE646-2:before {
   content: '\e80f';
 }
 /* '' */
@@ -210,6 +210,14 @@
   content: '\e843';
 }
 /* '' */
+.icon-uniE646-1:before {
+  content: '\e844';
+}
+/* '' */
+.icon-uniE60F-1:before {
+  content: '\e845';
+}
+/* '' */
 .new-dropdown {
   position: relative;
 }
