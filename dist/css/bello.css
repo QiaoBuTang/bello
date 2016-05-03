@@ -599,6 +599,9 @@ h1.page_title a.button {
 .page-header_thin .page_header .username .icon-logout:before {
   content: "\e629";
 }
+.page-header_thin .recruitment {
+  display: none !important;
+}
 .page_footer {
   overflow: hidden;
   padding: 10px 0 0px;
