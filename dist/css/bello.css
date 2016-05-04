@@ -467,7 +467,7 @@ h1.page_title a.button {
   content: "";
   width: 22px;
   height: 18px;
-  display: inline-block;
+  display: none;
   background: url(../img/header_footer/new_new.png) no-repeat;
   margin-left: 4px;
 }
@@ -475,7 +475,7 @@ h1.page_title a.button {
   content: "";
   width: 30px;
   height: 12px;
-  display: inline-block;
+  display: none;
   background: url(../img/header_footer/beta.png) no-repeat;
   margin-left: 4px;
 }
