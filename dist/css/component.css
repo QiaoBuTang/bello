@@ -226,6 +226,10 @@
   content: '\e847';
 }
 /* '' */
+.icon-uniE612-1:before {
+  content: '\e848';
+}
+/* '' */
 .new-dropdown {
   position: relative;
 }
