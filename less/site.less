@@ -299,21 +299,18 @@ h1 {
         line-height: 58px;
         font-size: 14px;
         background: none;
-      }
-    }
-    .global-login-item {
-      a {
-        color: #07c7fb;
-        background-color: #f9f9f9;
-        border-top: 3px solid #00c7fd;
-        line-height: 55px;
-      }
-    }
-    .global-register-item {
-      a {
         color: #333;
         &:hover {
+          color: #07c7fb;
           background-color: #f9f9f9;
+        }
+      }
+      &.selected {
+        a {
+          color: #07c7fb;
+          background-color: #f9f9f9;
+          border-top: 3px solid #00c7fd;
+          line-height: 55px;
         }
       }
     }

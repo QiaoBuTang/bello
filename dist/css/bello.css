@@ -494,18 +494,19 @@ h1.page_title a.button {
   line-height: 58px;
   font-size: 14px;
   background: none;
+  color: #333;
 }
-.page-header_normal .page_header .global-login-item a {
+.page-header_normal .page_header .global-register-item a:hover,
+.page-header_normal .page_header .global-login-item a:hover {
+  color: #07c7fb;
+  background-color: #f9f9f9;
+}
+.page-header_normal .page_header .global-register-item.selected a,
+.page-header_normal .page_header .global-login-item.selected a {
   color: #07c7fb;
   background-color: #f9f9f9;
   border-top: 3px solid #00c7fd;
   line-height: 55px;
-}
-.page-header_normal .page_header .global-register-item a {
-  color: #333;
-}
-.page-header_normal .page_header .global-register-item a:hover {
-  background-color: #f9f9f9;
 }
 .page-header_normal .page_header_content {
   width: 1180px;
