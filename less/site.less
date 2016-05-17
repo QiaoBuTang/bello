@@ -33,9 +33,6 @@ h1 {
       float: none;
     }
     a {
-      height: 46px;
-      line-height: 43px;
-      background-color: @btn-bc;
       // background-color: #ec4a54; ////for春节
       color: #ffffff;
       padding: 0 20px;
@@ -56,6 +53,8 @@ h1 {
     font-size: 14px;
     text-align: left;
     .transition(top);
+    border: 1px solid #f9f9f9;
+    border-top-width: 0;
     a {
       height: 34px;
       line-height: 33px;
@@ -63,6 +62,7 @@ h1 {
     }
     .menu-item {
       float: none;
+      position: relative;
       &:last-child {
         a {
           border-top: 1px dotted #cdcdcd;
@@ -134,7 +134,7 @@ h1 {
       }
       .operations-submenu {
         visibility: visible;
-        top: 46px;
+        top: 56px;
       }
     }
   }
@@ -167,8 +167,8 @@ h1 {
     font-family: Helvetica, arial, freesans, clean, sans-serif;
   }
   .operations-submenu .new-message-count {
-    top: 9px;
-    left: 54px;
+    top: 8px;
+    margin-left: 2px;
   }
   &.page-header_happy2016 {
     .page_header {
@@ -288,7 +288,32 @@ h1 {
         }
       }
     }
+    .operations-menu {
+      a {
+        height: auto;
+        background: #fff;
+        color: #333;
+      }
+      .account-name {
+        margin-top: -6px;
+        border-top: 3px solid #00c7fd;
+        & > a {
+          color: #07C7F5;
+          border-left: 1px solid #f9f9f9;
+          border-right: 1px solid #f9f9f9;
+          line-height: 55px;
+        }
+      }
 
+    }
+    .operations-submenu {
+      a {
+        &:hover {
+          background: #f9f9f9;
+          color: #07c7fb;
+        }
+      }
+    }
     .global-register-item,
     .global-login-item {
       margin-top: -6px;

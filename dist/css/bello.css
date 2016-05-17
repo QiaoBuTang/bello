@@ -241,9 +241,6 @@ h1.page_title a.button {
   float: none;
 }
 .page-header .operations-menu a {
-  height: 46px;
-  line-height: 43px;
-  background-color: #228fdd;
   color: #ffffff;
   padding: 0 20px;
   -webkit-transition: background 0.2s ease;
@@ -269,6 +266,8 @@ h1.page_title a.button {
   -ms-transition: top 0.2s ease;
   -o-transition: top 0.2s ease;
   transition: top 0.2s ease;
+  border: 1px solid #f9f9f9;
+  border-top-width: 0;
 }
 .page-header .operations-submenu a {
   height: 34px;
@@ -277,6 +276,7 @@ h1.page_title a.button {
 }
 .page-header .operations-submenu .menu-item {
   float: none;
+  position: relative;
 }
 .page-header .operations-submenu .menu-item:last-child a {
   border-top: 1px dotted #cdcdcd;
@@ -342,7 +342,7 @@ h1.page_title a.button {
 }
 .page-header .account-name:hover .operations-submenu {
   visibility: visible;
-  top: 46px;
+  top: 56px;
 }
 .page-header .icon-new-mess {
   height: 10px;
@@ -371,8 +371,8 @@ h1.page_title a.button {
   font-family: Helvetica, arial, freesans, clean, sans-serif;
 }
 .page-header .operations-submenu .new-message-count {
-  top: 9px;
-  left: 54px;
+  top: 8px;
+  margin-left: 2px;
 }
 .page-header.page-header_happy2016 .page_header .logo {
   margin-top: 0;
@@ -481,6 +481,25 @@ h1.page_title a.button {
 }
 .page-header_normal .page_header .modules-menu .selected a {
   border-bottom: 2px solid #0097e0;
+}
+.page-header_normal .page_header .operations-menu a {
+  height: auto;
+  background: #fff;
+  color: #333;
+}
+.page-header_normal .page_header .operations-menu .account-name {
+  margin-top: -6px;
+  border-top: 3px solid #00c7fd;
+}
+.page-header_normal .page_header .operations-menu .account-name > a {
+  color: #07C7F5;
+  border-left: 1px solid #f9f9f9;
+  border-right: 1px solid #f9f9f9;
+  line-height: 55px;
+}
+.page-header_normal .page_header .operations-submenu a:hover {
+  background: #f9f9f9;
+  color: #07c7fb;
 }
 .page-header_normal .page_header .global-register-item,
 .page-header_normal .page_header .global-login-item {
