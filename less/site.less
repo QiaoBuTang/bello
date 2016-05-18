@@ -100,13 +100,14 @@ h1 {
       }
       &:before {
         content: "";
-        background: url(../img/header_footer/icons.png) -60px -30px no-repeat;
+        background: url(../img/header_footer/icons.png) -60px 0 no-repeat;
       }
       &:after {
         content: '\e632';
         font-family: "qbt-font";
         font-size: 16px;
         line-height: 30px;
+        color: #ced7de;
         .transition;
       }
     }
@@ -121,7 +122,7 @@ h1 {
   .member {
     > a {
       &:before {
-        background-position: -90px -30px;
+        background-position: -89px 0;
       }
     }
   }
@@ -426,6 +427,7 @@ h1 {
       top: 30px;
       background: #277cbc;
       color: #ffffff;
+      border-width: 0;
     }
     .account-name {
       &:hover {
@@ -448,6 +450,12 @@ h1 {
         content: "\e629";
       }
     }
+  }
+  .account-name > a:before {
+      background-position: -60px -30px;
+  }
+  .member > a:before {
+      background-position: -89px -30px;
   }
   .recruitment {
     display: none !important;
