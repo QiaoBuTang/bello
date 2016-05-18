@@ -230,6 +230,10 @@
   content: '\e848';
 }
 /* '' */
+.icon-uniE67B:before {
+  content: '\e849';
+}
+/* '' */
 .new-dropdown {
   position: relative;
 }
