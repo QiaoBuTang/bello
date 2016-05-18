@@ -315,13 +315,14 @@ h1.page_title a.button {
 }
 .page-header .account-name > a:before {
   content: "";
-  background: url(../img/header_footer/icons.png) -60px -30px no-repeat;
+  background: url(../img/header_footer/icons.png) -60px 0 no-repeat;
 }
 .page-header .account-name > a:after {
   content: '\e632';
   font-family: "qbt-font";
   font-size: 16px;
   line-height: 30px;
+  color: #ced7de;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   -ms-transition: all 0.2s ease;
@@ -332,7 +333,7 @@ h1.page_title a.button {
   background-position: -30px -60px;
 }
 .page-header .member > a:before {
-  background-position: -90px -30px;
+  background-position: -89px 0;
 }
 .page-header .account-name:hover > a:after {
   -webkit-transform: rotate(-180deg);
@@ -342,7 +343,7 @@ h1.page_title a.button {
 }
 .page-header .account-name:hover .operations-submenu {
   visibility: visible;
-  top: 56px;
+  top: 55px;
 }
 .page-header .icon-new-mess {
   height: 10px;
@@ -373,6 +374,7 @@ h1.page_title a.button {
 .page-header .operations-submenu .new-message-count {
   top: 8px;
   margin-left: 2px;
+  left: auto;
 }
 .page-header.page-header_happy2016 .page_header .logo {
   margin-top: 0;
@@ -603,6 +605,7 @@ h1.page_title a.button {
   top: 30px;
   background: #277cbc;
   color: #ffffff;
+  border-width: 0;
 }
 .page-header_thin .page_header .account-name:hover .operations-submenu {
   top: 34px;
@@ -618,6 +621,12 @@ h1.page_title a.button {
 }
 .page-header_thin .page_header .username .icon-logout:before {
   content: "\e629";
+}
+.page-header_thin .account-name > a:before {
+  background-position: -60px -30px;
+}
+.page-header_thin .member > a:before {
+  background-position: -89px -30px;
 }
 .page-header_thin .recruitment {
   display: none !important;
