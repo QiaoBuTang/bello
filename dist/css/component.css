@@ -238,6 +238,14 @@
   content: '\e84a';
 }
 /* '' */
+.icon-uniE65E:before {
+  content: '\e84b';
+}
+/* '' */
+.icon-uniE831:before {
+  content: '\e84c';
+}
+/* '' */
 .new-dropdown {
   position: relative;
 }
