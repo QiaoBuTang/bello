@@ -1,5 +1,5 @@
 /**
- * @require '/css/chat.css';
+ * @require '../css/chat.css';
  */
 export default class Tp_search {
     constructor(config) {
