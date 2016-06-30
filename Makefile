@@ -11,6 +11,7 @@ dist: clean install
 	./node_modules/.bin/lessc ./less/bello.less ./dist/css/bello.css
 	./node_modules/.bin/lessc ./less/bello.mobile.less ./dist/css/bello.mobile.css
 	./node_modules/.bin/lessc ./less/component.less ./dist/css/component.css
+	./node_modules/.bin/lessc ./less/chat.less ./dist/css/chat.css
 	mkdir ./dist/js && cat ./js/*.js > ./dist/js/component.js
 	cp -r ./font ./img ./dist/
 tag: dist

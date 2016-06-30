@@ -1,0 +1,40 @@
+//聊天的通用组件样式
+.chat-iframe__wrapper {
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+    width: 500px;
+    height: 495px;
+    z-index: 1000;
+}
+.chat-iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.chat-mini {
+    text-decoration: none;
+    font-size: 24px;
+    width: 30px;
+    height: 29px;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    z-index: 2;
+    &:hover {
+        background-color: darken(#59677b, 10%);
+    }
+    &:before {
+        content: "";
+        height: 2px;
+        width: 20px;
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 5px;
+        margin-top: -1px;
+        background-color: #fff;
+    }
+}
