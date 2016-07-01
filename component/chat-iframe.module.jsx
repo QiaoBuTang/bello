@@ -18,7 +18,7 @@ export default class Tp_search {
         let query = (this.embedded && 'embedded') + (this.contact && `&contact=${this.contact}`) + (this.message && `&message=${this.message}`);
         let dom = `<div class="chat-iframe__wrapper">
                         <a class="chat-mini" href="javascript:;"></a>
-                        <iframe src="http://av.qiaobutang.com/i/chat?${query}" scrolling="no" class="chat-iframe" frameborder="0"></iframe>
+                        <iframe src="http://cv.qiaobutang.com/i/chat?${query}" scrolling="no" class="chat-iframe" frameborder="0"></iframe>
                     </div>`;
         $(dom).appendTo('body');
 

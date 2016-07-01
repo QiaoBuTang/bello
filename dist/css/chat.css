@@ -1,5 +1,5 @@
 .chat-iframe__wrapper {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   right: 10px;
   width: 500px;
