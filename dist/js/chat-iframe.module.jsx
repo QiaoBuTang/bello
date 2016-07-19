@@ -15,7 +15,8 @@ export default class Tp_search {
     
     render() {
         $('.chat-iframe__wrapper').remove();
-        let query = (this.embedded && 'embedded') + (this.contact && `&contact=${this.contact}`) + (this.message && `&message=${this.message}`);
+        let messageQuery = this.getMessageQuery();
+        let query = (this.embedded && 'embedded') + (this.contact && `&contact=${this.contact}`) + (this.message && `${messageQuery}`);
         let dom = `<div class="chat-iframe__wrapper">
                         <a class="chat-mini" href="javascript:;"></a>
                         <iframe src="http://cv.qiaobutang.com/i/chat?${query}" scrolling="no" class="chat-iframe" frameborder="0"></iframe>
@@ -23,6 +24,14 @@ export default class Tp_search {
         $(dom).appendTo('body');
 
         this._bind();
+    }
+
+    getMessageQuery() {
+        let query = '';
+        for (var i = 0; i < this.message.length; i++) {
+            query += `&message=${this.message[i]}`;
+        }
+        return query;
     }
 
     _bind() {
