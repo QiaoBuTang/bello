@@ -16,6 +16,7 @@ export default class Tp_search {
     render() {
         $('.chat-iframe__wrapper').remove();
 
+        let messageQuery = '';
         if (this.message) {
             let messageQuery = this.getMessageQuery();
         }
