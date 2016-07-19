@@ -18,7 +18,7 @@ export default class Tp_search {
 
         let messageQuery = '';
         if (this.message) {
-            let messageQuery = this.getMessageQuery();
+            messageQuery = this.getMessageQuery();
         }
 
         let query = (this.embedded && 'embedded') + (this.contact && `&contact=${this.contact}`) + (this.message && `${messageQuery}`);
