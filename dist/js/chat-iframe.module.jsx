@@ -5,7 +5,7 @@ export default class Tp_search {
     constructor(config) {
         this.contact = config.contact || '';  //自动打开好友的id
         this.embedded = config.embedded || true;
-        this.message = config.message || '';  //自动发的消息
+        this.message = (config.message && config.message.length !== 0) ? config.message : '';  //自动发的消息
         this.init();
     }
 
@@ -15,7 +15,11 @@ export default class Tp_search {
     
     render() {
         $('.chat-iframe__wrapper').remove();
-        let messageQuery = this.getMessageQuery();
+
+        if (this.message) {
+            let messageQuery = this.getMessageQuery();
+        }
+
         let query = (this.embedded && 'embedded') + (this.contact && `&contact=${this.contact}`) + (this.message && `${messageQuery}`);
         let dom = `<div class="chat-iframe__wrapper">
                         <a class="chat-mini" href="javascript:;"></a>
