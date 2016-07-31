@@ -482,7 +482,7 @@ h1.page_title a.button {
   margin-left: 4px;
 }
 .page-header_normal .page_header .modules-menu .selected a {
-  border-bottom: 2px solid #0097e0;
+  border-bottom: 2px solid #29b1fe;
 }
 .page-header_normal .page_header .operations-menu a {
   height: auto;
@@ -491,7 +491,7 @@ h1.page_title a.button {
 }
 .page-header_normal .page_header .operations-menu .account-name {
   margin-top: -6px;
-  border-top: 3px solid #00c7fd;
+  border-top: 3px solid #29b1fe;
 }
 .page-header_normal .page_header .operations-menu .account-name > a {
   color: #07C7F5;
@@ -526,7 +526,7 @@ h1.page_title a.button {
 .page-header_normal .page_header .global-login-item.selected a {
   color: #07c7fb;
   background-color: #f9f9f9;
-  border-top: 3px solid #00c7fd;
+  border-top: 3px solid #29b1fe;
   line-height: 55px;
 }
 .page-header_normal .page_header_content {
@@ -746,7 +746,7 @@ h1.page_title a.button {
   color: #999;
 }
 .qbt-footer.qbt-footer_v1 .qbt-footer__media a {
-  color: #6cb4f9;
+  color: #29b1fe;
 }
 .qbt-friend-link.qbt-friend-link_v1 {
   background: #f0f4f7 url('../img/header_footer/footer/v1/friendlink_bg.png') repeat-x top;
