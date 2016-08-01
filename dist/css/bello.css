@@ -322,7 +322,7 @@ h1.page_title a.button {
   font-family: "qbt-font";
   font-size: 16px;
   line-height: 30px;
-  color: #ced7de;
+  color: #29b1fe;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   -ms-transition: all 0.2s ease;
@@ -494,14 +494,14 @@ h1.page_title a.button {
   border-top: 3px solid #29b1fe;
 }
 .page-header_normal .page_header .operations-menu .account-name > a {
-  color: #07C7F5;
+  color: #29b1fe;
   border-left: 1px solid #f9f9f9;
   border-right: 1px solid #f9f9f9;
   line-height: 54px;
 }
 .page-header_normal .page_header .operations-submenu a:hover {
   background: #f9f9f9;
-  color: #07c7fb;
+  color: #29b1fe;
 }
 .page-header_normal .page_header .global-register-item,
 .page-header_normal .page_header .global-login-item {
@@ -519,12 +519,12 @@ h1.page_title a.button {
 }
 .page-header_normal .page_header .global-register-item a:hover,
 .page-header_normal .page_header .global-login-item a:hover {
-  color: #07c7fb;
+  color: #29b1fe;
   background-color: #f9f9f9;
 }
 .page-header_normal .page_header .global-register-item.selected a,
 .page-header_normal .page_header .global-login-item.selected a {
-  color: #07c7fb;
+  color: #29b1fe;
   background-color: #f9f9f9;
   border-top: 3px solid #29b1fe;
   line-height: 55px;
