@@ -1004,6 +1004,7 @@
             }
             this.$instruct.show();
             this.$search.show();
+            this.$search.val('');
             this.$instructText.text(this.specialSelected(0).name.join('/'));
         } else {
             if (this.$tab) {
